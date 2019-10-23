@@ -1,0 +1,4 @@
+enum SubscriptionType {
+    basic,
+    premium
+}

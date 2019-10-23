@@ -6,6 +6,7 @@ import { AngularOpenlayersModule } from 'ngx-openlayers';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BigMapComponent } from './big-map/big-map.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { BigMapComponent } from './big-map/big-map.component';
     BrowserModule,
     AppRoutingModule,
     AngularOpenlayersModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
