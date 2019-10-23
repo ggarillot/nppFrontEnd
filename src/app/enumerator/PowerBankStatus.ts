@@ -1,0 +1,4 @@
+enum PowerBankStatus {
+    ok,
+    faulty
+}
