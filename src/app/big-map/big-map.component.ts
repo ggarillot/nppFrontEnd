@@ -23,10 +23,10 @@ export class BigMapComponent implements AfterViewInit {
   constructor() {
     this.hoverCoordinate = [0, 0];
     this.stationCoordinatesList = [];
-    this.stationCoordinatesList.push(new StationCoordinates(5, 45));
-    this.stationCoordinatesList.push(new StationCoordinates(5, 46));
-    this.stationCoordinatesList.push(new StationCoordinates(6, 45));
-    this.stationCoordinatesList.push(new StationCoordinates(6, 46));
+    this.stationCoordinatesList.push(new StationCoordinates(0, 5, 45));
+    this.stationCoordinatesList.push(new StationCoordinates(1, 5, 46));
+    this.stationCoordinatesList.push(new StationCoordinates(2, 6, 45));
+    this.stationCoordinatesList.push(new StationCoordinates(3, 6, 46));
   }
 
   public ngAfterViewInit() {
@@ -55,27 +55,38 @@ export class BigMapComponent implements AfterViewInit {
         err => { reject(err); });
     });
   }
+
+  handleClick(evt: MapBrowserEvent) {
+    console.log(evt);
+
+    const map = evt.map;
+    // this bit checks if user clicked on a feature
+    const point = map.forEachFeatureAtPixel(evt.pixel,
+      (feature, layer) => {
+        console.log(feature);
+
+      });
+  }
 }
 
 class StationCoordinates {
-  constructor(lo: number, la: number) {
+  constructor(id: number, lo: number, la: number) {
+    this.idStation = id;
     this.longitude = lo;
     this.latitude = la;
   }
+  public idStation: number;
   public longitude: number;
   public latitude: number;
 }
 
 class MyInteraction extends interaction.Interaction {
   private dragging;
-  private selectedFeature;
+  private selectedFeature: Feature;
   constructor() {
     super({
       handleEvent: (e: MapBrowserEvent) => {
         switch (e.type) {
-          case 'pointerup':
-            return this.handleUp(e);
-            break;
           case 'pointerdown':
             return this.handleDown(e);
             break;
@@ -88,17 +99,13 @@ class MyInteraction extends interaction.Interaction {
 
   public handleDown(e: MapBrowserEvent) {
     const features = e.map.getFeaturesAtPixel(e.pixel);
-    console.log('down');
     if (features && features.length > 0) {
-      this.selectedFeature = features[0];
+      this.selectedFeature = features[0] as Feature;
+      console.log(this.selectedFeature.getId());
       return false;
     }
-    return true;
-  }
+    console.log('no station');
 
-  public handleUp(e: MapBrowserEvent) {
-    this.selectedFeature = null;
-    console.log('up');
     return true;
   }
 

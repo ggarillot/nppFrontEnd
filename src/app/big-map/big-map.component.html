@@ -8,7 +8,7 @@
     </aol-layer-tile>
     <aol-layer-vector>
         <aol-source-vector>
-            <aol-feature (click)="printYoupi()">
+            <aol-feature>
                 <aol-geometry-point>
                     <aol-coordinate [x]="lonCoord" [y]="latCoord" srid="EPSG:4326">
                     </aol-coordinate>
@@ -20,7 +20,7 @@
                     </aol-style-circle>
                 </aol-style>
             </aol-feature>
-            <aol-feature *ngFor="let station of stationCoordinatesList" (click)="printYoupi()">
+            <aol-feature *ngFor="let station of stationCoordinatesList; let i = index" [id]="i">
                 <aol-geometry-point>
                     <aol-coordinate [x]="station.longitude" [y]="station.latitude" srid="EPSG:4326">
                     </aol-coordinate>
@@ -28,7 +28,7 @@
                 <aol-style>
                     <aol-style-circle [radius]="10">
                         <aol-style-stroke [color]="'black'" [width]="width"></aol-style-stroke>
-                        <!-- <aol-style-fill [color]="'red'"></aol-style-fill> -->
+                        <aol-style-fill [color]="'blue'"></aol-style-fill>
                     </aol-style-circle>
                 </aol-style>
             </aol-feature>
