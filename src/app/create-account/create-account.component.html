@@ -1,0 +1,49 @@
+<app-header></app-header>
+
+<body>
+    <mat-card class="card" color="">
+        <mat-card-header>
+            <mat-card-title>Créer un compte</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form class="form">
+                <table cellspacing="0">
+                    <tr>
+                        <td>
+                            <mat-form-field>
+                                <input matInput placeholder="Prénom" [(ngModel)]="surname" name="surname" required />
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field>
+                                <input matInput placeholder="Nom" [(ngModel)]="name" name="name" required />
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field>
+                                <input matInput placeholder="Email" [(ngModel)]="email" name="email" required />
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field>
+                                <input matInput placeholder="Password" [(ngModel)]="password" type="password"
+                                    name="password" required />
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button (click)="createAccount()" color="primary">Créer un compte</button>
+        </mat-card-actions>
+    </mat-card>
+
+</body>

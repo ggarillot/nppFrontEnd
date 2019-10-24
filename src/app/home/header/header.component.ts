@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { element } from 'protractor';
+import { Component, OnInit, Inject, HostListener } from '@angular/core';
+import { state, trigger, transition, animate, style } from '@angular/animations';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -8,8 +11,6 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   constructor() { }
-
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

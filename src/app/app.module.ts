@@ -12,6 +12,11 @@ import { HomeComponent } from './home/home.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { HeaderComponent } from './home/header/header.component';
 import { FooterComponent } from './home/footer/footer.component';
+import { LoginComponent } from './login/login.component';
+import { FormsModule, NgModel } from '@angular/forms';
+// tslint:disable-next-line:max-line-length
+import { MatButtonModule, MatCardModule, MatInputModule, MatDialogModule, MatTableModule, MatMenuModule, MatIconModule, MatCardContent, MatProgressSpinnerModule } from '@angular/material';
+import { CreateAccountComponent } from './create-account/create-account.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +24,9 @@ import { FooterComponent } from './home/footer/footer.component';
     BigMapComponent,
     HomeComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent,
+    CreateAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +34,16 @@ import { FooterComponent } from './home/footer/footer.component';
     AngularOpenlayersModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatButtonModule,
+    MatCardModule,
+    MatInputModule,
+    MatDialogModule,
+    MatProgressSpinnerModule,
+    // MatTableModule,
+    // MatMenuModule,
+    // MatIconModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
