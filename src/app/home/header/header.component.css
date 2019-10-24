@@ -1,0 +1,22 @@
+.spacer {
+    flex: 1 1;
+}
+a {
+    text-decoration: none;
+    color: white;
+    margin: 20px;
+    
+}
+
+mat-toolbar {
+    min-height: 40px;
+ 
+}
+
+mat-toolbar-row {
+    padding-top: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px ;
+    height: 20px;
+ 
+}
