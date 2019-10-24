@@ -1,6 +1,7 @@
 .spacer {
     flex: 1 1;
 }
+
 a {
     text-decoration: none;
     color: white;
@@ -19,13 +20,4 @@ mat-toolbar-row {
     font-size: 14px ;
     height: 20px;
  
-}
-
-.sticky {
-    background: #fff;
-    box-shadow: 0 3px 12px 0 rgba(0,0,0,.08);
-    position: fixed;
-    top: 0;
-    height: 120px;
-    width: 100%;
 }

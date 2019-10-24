@@ -1,3 +1,4 @@
+import { FormGroup, FormControl } from '@angular/forms';
 import { Administrator } from './../model/Administrator';
 import { StandardUser } from './../model/StandardUser';
 import { Component, OnInit } from '@angular/core';
@@ -14,10 +15,15 @@ export class LoginComponent implements OnInit {
   admin: Administrator;
   email: string;
   password: string;
+  form: FormGroup;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
+    this.form = new FormGroup({
+      email: new FormControl(),
+      password: new FormControl()
+    });
   }
 
   login(): void {

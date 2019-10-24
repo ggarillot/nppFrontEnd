@@ -1,3 +1,6 @@
+import { StandardUser } from './model/StandardUser';
+import { RouterModule } from '@angular/router';
+import { StandardUserService } from './service/standard-user.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -13,10 +16,11 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { HeaderComponent } from './home/header/header.component';
 import { FooterComponent } from './home/footer/footer.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule, NgModel } from '@angular/forms';
+import { FormsModule, NgModel, FormGroup, ReactiveFormsModule } from '@angular/forms';
 // tslint:disable-next-line:max-line-length
-import { MatButtonModule, MatCardModule, MatInputModule, MatDialogModule, MatTableModule, MatMenuModule, MatIconModule, MatCardContent, MatProgressSpinnerModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatInputModule, MatDialogModule, MatTableModule, MatMenuModule, MatIconModule, MatCardContent, MatProgressSpinnerModule, MatExpansionModule, MatDividerModule, MatListModule } from '@angular/material';
 import { CreateAccountComponent } from './create-account/create-account.component';
+import { MyAccountComponent } from './my-account/my-account.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,8 @@ import { CreateAccountComponent } from './create-account/create-account.componen
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    MyAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -42,10 +47,13 @@ import { CreateAccountComponent } from './create-account/create-account.componen
     MatProgressSpinnerModule,
     // MatTableModule,
     // MatMenuModule,
-    // MatIconModule,
-    FormsModule
+    MatIconModule,
+    MatDividerModule,
+    MatListModule,
+    MatExpansionModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [StandardUserService, StandardUser],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
