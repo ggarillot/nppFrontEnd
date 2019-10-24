@@ -8,18 +8,26 @@ import { AppComponent } from './app.component';
 import { BigMapComponent } from './big-map/big-map.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeComponent } from './home/home.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { HeaderComponent } from './home/header/header.component';
+import { FooterComponent } from './home/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BigMapComponent
+    BigMapComponent,
+    HomeComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularOpenlayersModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
