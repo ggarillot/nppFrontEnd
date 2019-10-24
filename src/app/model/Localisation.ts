@@ -1,7 +1,7 @@
 export class Localisation {
 
-   latitude : number;
+    latitude: number;
 
-   longitude : number;
+    longitude: number;
 
 }
