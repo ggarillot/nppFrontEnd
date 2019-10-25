@@ -3,8 +3,8 @@ import { StationMarkerComponent } from './../station-marker/station-marker.compo
 import { GenericStation } from './../model/GenericStation';
 import { GenericStationService } from './../service/generic-station.service';
 import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
-import { MapComponent, OverlayComponent } from 'ngx-openlayers';
-import { Feature, MapBrowserEvent, Overlay } from 'openlayers';
+import { MapComponent } from 'ngx-openlayers';
+import { Feature, MapBrowserEvent } from 'openlayers';
 
 @Component({
   selector: 'app-big-map',
@@ -27,7 +27,7 @@ export class BigMapComponent implements AfterViewInit, OnInit {
   public stationMap: Map<number, GenericStation>;
 
   constructor(private stationService: GenericStationService) {
-    this.stationMap = new Map();
+    this.stationMap = new Map<number, GenericStation>();
   }
 
   public ngOnInit() {
@@ -55,8 +55,6 @@ export class BigMapComponent implements AfterViewInit, OnInit {
 
       this.zoom = 10;
     });
-
-
   }
 
   getPosition(): Promise<any> {
@@ -69,7 +67,7 @@ export class BigMapComponent implements AfterViewInit, OnInit {
   }
 
   handleMove(event: MapBrowserEvent) {
-    document.getElementById('popupId').style.display = 'none';
+    this.marker.setStation(null);
   }
 
   handleClick(event: MapBrowserEvent) {
@@ -81,17 +79,15 @@ export class BigMapComponent implements AfterViewInit, OnInit {
 
       if (feature.getId() === 'currentLocation') {
         console.log('you are here');
-        document.getElementById('popupId').style.display = 'none';
+        this.marker.setStation(null);
       } else {
         const stationId = feature.getId() as number;
         const station = this.stationMap.get(stationId);
 
         this.marker.setStation(station);
-
-        document.getElementById('popupId').style.display = 'block';
       }
     } else {
-      document.getElementById('popupId').style.display = 'none';
+      this.marker.setStation(null);
     }
   }
 }

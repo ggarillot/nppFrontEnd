@@ -1,25 +1,23 @@
-<aol-overlay>
-    <aol-coordinate *ngIf="station" [x]="station.localisation.longitude" [y]="station.localisation.latitude"
-        [srid]="'EPSG:4326'"></aol-coordinate>
+<aol-overlay *ngIf="station">
+    <aol-coordinate [x]="station.localisation.longitude" [y]="station.localisation.latitude" [srid]="'EPSG:4326'">
+    </aol-coordinate>
     <aol-content>
         <div id="popupId" class="stationPopup">
             <div id="popupIdContent" class="stationPopupContent">
-                <div *ngIf="station">
-                    <mat-card>
-                        <mat-card-header>
-                            <mat-card-title>
-                                Station {{station.id}}
-                            </mat-card-title>
-                        </mat-card-header>
-                        <mat-card-content>
-                            Position : {{station.localisation.longitude}},{{station.localisation.latitude}} <br />
-                            Batteries : {{station.powerBankList.length}} <br />
-                            Emplacements : {{station.nslots - station.powerBankList.length}} <br />
-                            <button mat-stroked-button color="primary"><a
-                                    routerLink="/station/{{station.id}}">Détails</a></button>
-                        </mat-card-content>
-                    </mat-card>
-                </div>
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>
+                            Station {{station.id}}
+                        </mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        Position : {{station.localisation.longitude}},{{station.localisation.latitude}} <br />
+                        Batteries : {{station.powerBankList.length}} <br />
+                        Emplacements : {{station.nslots - station.powerBankList.length}} <br />
+                        <button mat-stroked-button color="primary"><a
+                                routerLink="/station/{{station.id}}">Détails</a></button>
+                    </mat-card-content>
+                </mat-card>
             </div>
         </div>
     </aol-content>
