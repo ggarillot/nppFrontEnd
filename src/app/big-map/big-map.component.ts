@@ -34,13 +34,9 @@ export class BigMapComponent implements AfterViewInit, OnInit {
 
     this.stationService.findAll().subscribe(
       (list: GenericStation[]) => {
+
         for (const station of list) {
-          this.stationService.getPowerBankListOfThisStation(station.id).subscribe(
-            (listP: PowerBank[]) => {
-              station.powerBankList = listP;
-              this.stationMap.set(station.id, station);
-            }
-          );
+          this.stationMap.set(station.id, station);
         }
       }
     );
@@ -66,8 +62,23 @@ export class BigMapComponent implements AfterViewInit, OnInit {
     });
   }
 
+  setMarkerStation(station: GenericStation): void {
+    this.loadBatteries(station);
+    this.marker.setStation(station);
+  }
+
+  loadBatteries(station: GenericStation): void {
+    if (station != null) {
+      this.stationService.getPowerBankListOfThisStation(station.id).subscribe(
+        (listP: PowerBank[]) => {
+          station.powerBankList = listP;
+        }
+      )
+    }
+  }
+
   handleMove(event: MapBrowserEvent) {
-    this.marker.setStation(null);
+    this.setMarkerStation(null);
   }
 
   handleClick(event: MapBrowserEvent) {
@@ -78,16 +89,15 @@ export class BigMapComponent implements AfterViewInit, OnInit {
       const feature = features[0] as Feature;
 
       if (feature.getId() === 'currentLocation') {
-        console.log('you are here');
-        this.marker.setStation(null);
+        this.setMarkerStation(null);
       } else {
         const stationId = feature.getId() as number;
         const station = this.stationMap.get(stationId);
 
-        this.marker.setStation(station);
+        this.setMarkerStation(station);
       }
     } else {
-      this.marker.setStation(null);
+      this.setMarkerStation(null);
     }
   }
 }

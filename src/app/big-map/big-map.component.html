@@ -1,11 +1,11 @@
 <aol-map #map (onClick)="handleClick($event)" (onMoveEnd)="handleMove($event)">
     <aol-interaction-default></aol-interaction-default>
     <app-station-marker #marker></app-station-marker>
-    <aol-view [zoom]=" zoom">
+    <aol-view [zoom]="zoom">
         <aol-coordinate [x]="lonCoord" [y]="latCoord" [srid]="'EPSG:4326'"></aol-coordinate>
     </aol-view>
     <aol-layer-tile>
-        <aol-source-osm></aol-source-osm>
+        <aol-source-xyz [url]="'https://api.maptiler.com/maps/voyager/256/{z}/{x}/{y}.png?key=JqtuhpUnmw7Cqb9uYBPg'"></aol-source-xyz>
     </aol-layer-tile>
     <aol-layer-vector>
         <aol-source-vector>

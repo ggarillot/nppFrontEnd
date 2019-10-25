@@ -14,7 +14,6 @@ export class StationMarkerComponent implements OnInit {
 
   public setStation(station: GenericStation): void {
     this.station = station;
-    console.log(this.station);
   }
 
   ngOnInit() {
