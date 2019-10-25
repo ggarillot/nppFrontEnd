@@ -1,0 +1,29 @@
+<br>
+<div class="row">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">Liste des souscriptions</div>
+            <div class="card-body">
+                <table class="table">
+                    <thead class="thead-light">
+                        <th>Id</th>
+                        <th>Date de début</th>
+                        <th>Date de fin</th>
+                        <th>type de souscription</th>
+                        <th>Nom l'utilisateur associé</th>
+
+
+                    </thead>
+                    <tr *ngFor="let item of subscriptionList">
+                        <td>{{item.id}}</td>
+                        <td>{{item.beginDate}}</td>
+                        <td>{{item.endDate}}</td>
+                        <td>{{item.type}}</td>
+                        <td>{{item.genericUser.name}}</td>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

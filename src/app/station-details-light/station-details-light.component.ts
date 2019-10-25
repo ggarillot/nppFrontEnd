@@ -16,7 +16,7 @@ export class StationDetailsLightComponent implements OnInit {
   ngOnInit() {
     this.station = new NormalStation();
     this.station.id = 1;
-    this.station.nSlots = 20;
+    this.station.nslots = 20;
     this.station.powerBankList = [];
   }
 

@@ -29,6 +29,6 @@ export class GenericUserService {
   }
 
   public findAll(): Observable<GenericUser[]> {
-    return this.http.get<GenericUser[]>(GenericUserService.uri + 'get');
+    return this.http.get<GenericUser[]>(GenericUserService.uri + '/get');
   }
 }

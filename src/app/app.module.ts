@@ -1,3 +1,6 @@
+import { SubscriptionService } from './service/subscription.service';
+import { PowerBankService } from './service/power-bank.service';
+import { NormalStationService } from './service/normal-station.service';
 import { StandardUser } from './model/StandardUser';
 import { RouterModule } from '@angular/router';
 import { StandardUserService } from './service/standard-user.service';
@@ -14,8 +17,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { StationMarkerComponent } from './station-marker/station-marker.component';
 
+import { ListStationComponent } from './station/list-station/list-station.component';
+import { ListPowerBankComponent } from './powerBank/list-power-bank/list-power-bank.component';
+import { ListSubscriptionComponent } from './subscription/list-subscription/list-subscription.component';
 import { HomeComponent } from './home/home.component';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { HeaderComponent } from './home/header/header.component';
 import { FooterComponent } from './home/footer/footer.component';
 import { LoginComponent } from './login/login.component';
@@ -31,6 +37,9 @@ import { MyAccountComponent } from './my-account/my-account.component';
     AppComponent,
     BigMapComponent,
     StationMarkerComponent,
+    ListStationComponent,
+    ListPowerBankComponent,
+    ListSubscriptionComponent,
     HomeComponent,
     HeaderComponent,
     FooterComponent,
@@ -58,7 +67,7 @@ import { MyAccountComponent } from './my-account/my-account.component';
     MatExpansionModule,
     ReactiveFormsModule
   ],
-  providers: [StandardUserService, StandardUser],
+  providers: [NormalStationService, PowerBankService, SubscriptionService, StandardUserService, StandardUser],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
