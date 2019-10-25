@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      email: new FormControl(),
+      username: new FormControl(),
       password: new FormControl()
     });
   }
@@ -36,13 +36,11 @@ export class LoginComponent implements OnInit {
     //   alert('Invalid');
     // }
 
-    if (this.loginservice.authenticate(this.form.value.email, this.form.value.password)) {
+    if (this.loginservice.authenticate(this.form.value.username, this.form.value.password)) {
       this.router.navigate(['home']);
       this.invalidLogin = false;
-      console.log('true');
     } else {
       this.invalidLogin = true;
-      console.log('false');
     }
 
   }
