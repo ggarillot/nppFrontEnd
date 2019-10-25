@@ -1,0 +1,10 @@
+<div class="stationDetailsLight">
+    <mat-card>
+        <mat-card-title>Station</mat-card-title>
+        <mat-card-content>
+            ID : {{station.id}} <br />
+            Batteries disponibles :  {{station.powerBankList.length}} <br />
+            Emplacements disponibles :  {{station.nSlots - station.powerBankList.length}} <br />
+        </mat-card-content>
+    </mat-card>
+</div>

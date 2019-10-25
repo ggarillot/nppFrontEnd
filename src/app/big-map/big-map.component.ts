@@ -1,51 +1,58 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { GenericStation } from './../model/GenericStation';
+import { GenericStationService } from './../service/generic-station.service';
+import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import { MapComponent } from 'ngx-openlayers';
-import { interaction, Feature, geom, MapBrowserEvent } from 'openlayers';
+import { Feature, MapBrowserEvent, Overlay } from 'openlayers';
 
 @Component({
   selector: 'app-big-map',
   templateUrl: './big-map.component.html',
   styleUrls: ['./big-map.component.css']
 })
-export class BigMapComponent implements AfterViewInit {
+export class BigMapComponent implements AfterViewInit, OnInit {
 
   @ViewChild('map', { static: false })
   public map: MapComponent;
 
   public lonCoord: number;
   public latCoord: number;
+
+  public lonCoordMarker: number;
+  public latCoordMarker: number;
+
   public zoom: number;
 
-  public stationCoordinatesList: Array<StationCoordinates>;
+  public stationMap;
 
-  public hoverCoordinate;
+  constructor(private stationService: GenericStationService) {
+    this.stationMap = new Map();
+  }
 
-  constructor() {
-    this.hoverCoordinate = [0, 0];
-    this.stationCoordinatesList = [];
-    this.stationCoordinatesList.push(new StationCoordinates(0, 5, 45));
-    this.stationCoordinatesList.push(new StationCoordinates(1, 5, 46));
-    this.stationCoordinatesList.push(new StationCoordinates(2, 6, 45));
-    this.stationCoordinatesList.push(new StationCoordinates(3, 6, 46));
+  public ngOnInit() {
+
+    this.stationService.findAll().subscribe(
+      (list: GenericStation[]) => {
+        for (const station of list) {
+          this.stationMap.set(station.id, station);
+        }
+      }
+    );
   }
 
   public ngAfterViewInit() {
-    this.map.instance.addInteraction(new MyInteraction());
 
     this.getPosition().then(pos => {
       console.log(`Position: ${pos.lng} ${pos.lat}`);
       this.lonCoord = pos.lng;
       this.latCoord = pos.lat;
+
+      this.lonCoordMarker = pos.lng;
+      this.latCoordMarker = pos.lat;
       this.zoom = 10;
     });
 
 
   }
-
-  public printYoupi(): void {
-    console.log('youpi');
-  }
-
 
   getPosition(): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -56,57 +63,43 @@ export class BigMapComponent implements AfterViewInit {
     });
   }
 
-  handleClick(evt: MapBrowserEvent) {
-    console.log(evt);
+  handleMove(event: MapBrowserEvent) {
+    document.getElementById('popupId').style.display = 'none';
+  }
 
-    const map = evt.map;
-    // this bit checks if user clicked on a feature
-    const point = map.forEachFeatureAtPixel(evt.pixel,
-      (feature, layer) => {
-        console.log(feature);
+  handleClick(event: MapBrowserEvent) {
 
-      });
+    const map = event.map;
+    const features = event.map.getFeaturesAtPixel(event.pixel);
+    if (features && features.length > 0) {
+      const feature = features[0] as Feature;
+
+      if (feature.getId() === 'currentLocation') {
+        console.log('you are here');
+      } else {
+        const stationId = feature.getId() as number;
+        const coord = this.stationMap.get(stationId);
+
+        this.lonCoordMarker = coord.longitude;
+        this.latCoordMarker = coord.latitude;
+
+        document.getElementById('popupId').style.display = 'block';
+        document.getElementById('popupIdContent').innerHTML = this.lonCoordMarker + ',' + this.latCoordMarker;
+      }
+    } else {
+      document.getElementById('popupId').style.display = 'none';
+    }
   }
 }
 
 class StationCoordinates {
-  constructor(id: number, lo: number, la: number) {
-    this.idStation = id;
+
+  constructor(lo: number, la: number) {
     this.longitude = lo;
     this.latitude = la;
   }
-  public idStation: number;
+
   public longitude: number;
   public latitude: number;
 }
 
-class MyInteraction extends interaction.Interaction {
-  private dragging;
-  private selectedFeature: Feature;
-  constructor() {
-    super({
-      handleEvent: (e: MapBrowserEvent) => {
-        switch (e.type) {
-          case 'pointerdown':
-            return this.handleDown(e);
-            break;
-        }
-        return true;
-      }
-    });
-    this.dragging = false;
-  }
-
-  public handleDown(e: MapBrowserEvent) {
-    const features = e.map.getFeaturesAtPixel(e.pixel);
-    if (features && features.length > 0) {
-      this.selectedFeature = features[0] as Feature;
-      console.log(this.selectedFeature.getId());
-      return false;
-    }
-    console.log('no station');
-
-    return true;
-  }
-
-}

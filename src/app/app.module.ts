@@ -8,11 +8,13 @@ import { AppComponent } from './app.component';
 import { BigMapComponent } from './big-map/big-map.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StationMarkerComponent } from './station-marker/station-marker.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BigMapComponent
+    BigMapComponent,
+    StationMarkerComponent
   ],
   imports: [
     BrowserModule,

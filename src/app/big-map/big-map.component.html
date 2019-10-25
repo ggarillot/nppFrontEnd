@@ -1,5 +1,11 @@
-<aol-map #map>
+<aol-map #map (onClick)="handleClick($event)" (onMoveEnd)="handleMove($event)">
     <aol-interaction-default></aol-interaction-default>
+    <aol-overlay>
+        <aol-coordinate [x]="lonCoordMarker" [y]="latCoordMarker" [srid]="'EPSG:4326'"></aol-coordinate>
+        <aol-content>
+            <app-station-marker></app-station-marker>
+        </aol-content>
+    </aol-overlay>
     <aol-view [zoom]=" zoom">
         <aol-coordinate [x]="lonCoord" [y]="latCoord" [srid]="'EPSG:4326'"></aol-coordinate>
     </aol-view>
@@ -8,7 +14,7 @@
     </aol-layer-tile>
     <aol-layer-vector>
         <aol-source-vector>
-            <aol-feature>
+            <aol-feature [id]="'currentLocation'">
                 <aol-geometry-point>
                     <aol-coordinate [x]="lonCoord" [y]="latCoord" srid="EPSG:4326">
                     </aol-coordinate>
@@ -20,9 +26,9 @@
                     </aol-style-circle>
                 </aol-style>
             </aol-feature>
-            <aol-feature *ngFor="let station of stationCoordinatesList; let i = index" [id]="i">
+            <aol-feature *ngFor="let station of stationMap | keyvalue" [id]="station.key">
                 <aol-geometry-point>
-                    <aol-coordinate [x]="station.longitude" [y]="station.latitude" srid="EPSG:4326">
+                    <aol-coordinate [x]="station.value.localisation.longitude" [y]="station.value.localisation.latitude" srid="EPSG:4326">
                     </aol-coordinate>
                 </aol-geometry-point>
                 <aol-style>
