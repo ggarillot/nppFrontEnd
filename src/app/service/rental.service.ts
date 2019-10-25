@@ -29,6 +29,6 @@ export class RentalService {
   }
 
   public findAll(): Observable<Rental[]> {
-    return this.http.get<Rental[]>(RentalService.uri + 'get');
+    return this.http.get<Rental[]>(RentalService.uri + '/get');
   }
 }

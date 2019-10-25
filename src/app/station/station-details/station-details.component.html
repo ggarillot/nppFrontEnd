@@ -1,0 +1,61 @@
+<h1 *ngIf="genericStation">Station {{genericStation.id}}</h1>
+
+<mat-card class="station-card">
+    <mat-card-content>
+        <table *ngIf="genericStation">
+            <tr>
+                <th>position :</th>
+            </tr>
+            <tr>
+                <th>Latitude : </th>
+                <th>{{genericStation.localisation.latitude}}</th>
+            </tr>
+            <tr>
+                <th>Longitude :</th>
+                <th>{{genericStation.localisation.longitude}}</th>
+            </tr>
+            <tr>
+                <th>Nb d'emplacement libre</th>
+                <th>{{genericStation.nslots-genericStation.powerBankList.length}}</th>
+            </tr>
+            <tr>
+                <th>Nb de batteries disponibles :</th>
+                <th>{{genericStation.powerBankList.length}}</th>
+            </tr>
+            <tr>
+                <th>Status :</th>
+                <th>{{genericStation.status}}</th>
+            </tr>
+        </table>
+    </mat-card-content>
+</mat-card>
+
+
+
+<br>
+<div class="row">
+    <div class="container">
+        <div class="card" *ngIf="genericStation">
+            <div class="card-header">Détails des batteries de la station {{genericStation.id}}
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead class="thead-light">
+                        <th>Id</th>
+                        <th>Status</th>
+                        <th>Niveau</th>
+
+
+
+                    </thead>
+                    <tr *ngFor="let item of genericStation.powerBankList">
+                        <td>{{item.id}}</td>
+                        <td>{{item.status}}</td>
+                        <td>{{item.level}}</td>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

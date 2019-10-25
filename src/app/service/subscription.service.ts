@@ -29,6 +29,6 @@ export class SubscriptionService {
   }
 
   public findAll(): Observable<Subscription[]> {
-    return this.http.get<Subscription[]>(SubscriptionService.uri + 'get');
+    return this.http.get<Subscription[]>(SubscriptionService.uri + '/get');
   }
 }

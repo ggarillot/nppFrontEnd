@@ -29,6 +29,6 @@ export class PowerBankService {
   }
 
   public findAll(): Observable<PowerBank[]> {
-    return this.http.get<PowerBank[]>(PowerBankService.uri + 'get');
+    return this.http.get<PowerBank[]>(PowerBankService.uri + '/get');
   }
 }

@@ -31,6 +31,6 @@ export class AdministratorService {
   }
 
   public findAll(): Observable<Administrator[]> {
-    return this.http.get<Administrator[]>(AdministratorService.uri + 'get');
+    return this.http.get<Administrator[]>(AdministratorService.uri + '/get');
   }
 }

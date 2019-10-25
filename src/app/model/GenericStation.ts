@@ -7,7 +7,7 @@ export class GenericStation {
 
     localisation: Localisation;
 
-    nSlots: number;
+    nslots: number;
 
     status: GenericStationStatus;
 

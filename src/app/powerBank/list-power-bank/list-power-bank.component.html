@@ -1,0 +1,29 @@
+<br>
+<div class="row">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">Liste des batteries</div>
+            <div class="card-body">
+                <table class="table">
+                    <thead class="thead-light">
+                        <th>Id</th>
+                        <th>Status</th>
+                        <th>Niveau</th>
+                        <th>Id de la Station</th>
+
+
+                    </thead>
+                    <tr *ngFor="let item of powerBankList">
+                        <td>{{item.id}}</td>
+                        <td>{{item.status}}</td>
+                        <td><mat-progress-bar mode="determinate" value="{{item.level*100}}"></mat-progress-bar>{{item.level*100}}%</td>
+                        <td *ngIf="item.genericStation!==null; else pasDeStation">{{item.genericStation.id}}</td>
+                        <ng-template #pasDeStation>
+                            <td>Pas de station associée </td>
+                        </ng-template>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
