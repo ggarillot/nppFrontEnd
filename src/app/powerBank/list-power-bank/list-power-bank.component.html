@@ -15,7 +15,14 @@
                     </thead>
                     <tr *ngFor="let item of powerBankList">
                         <td>{{item.id}}</td>
-                        <td>{{item.status}}</td>
+                        <td *ngIf="item.status=='ok'; else statusFalse">
+                                <mat-icon style="color: forestgreen;">check_circle</mat-icon>
+                            </td>
+                            <ng-template #statusFalse>
+                                <td>
+                                    <mat-icon style="color:crimson;">cancel</mat-icon> 
+                                </td>
+                            </ng-template>
                         <td><mat-progress-bar mode="determinate" value="{{item.level*100}}"></mat-progress-bar>{{item.level*100}}%</td>
                         <td *ngIf="item.genericStation!==null; else pasDeStation">{{item.genericStation.id}}</td>
                         <ng-template #pasDeStation>
