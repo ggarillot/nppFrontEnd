@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 })
 export class StandardUserService {
 
-  private static uri = 'http://localhost:8080/npp/standardUser';
+  private static uri = 'http://localhost:8080/npp/user';
 
   constructor(private http: HttpClient) { }
 
