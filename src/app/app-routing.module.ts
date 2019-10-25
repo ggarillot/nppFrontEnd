@@ -1,3 +1,5 @@
+import { StationDetailsComponent } from './station/station-details/station-details.component';
+import { ListPowerBankByStationComponent } from './station/list-power-bank-by-station/list-power-bank-by-station.component';
 
 import { ListSubscriptionComponent } from './subscription/list-subscription/list-subscription.component';
 import { ListPowerBankComponent } from './powerBank/list-power-bank/list-power-bank.component';
@@ -19,7 +21,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'monCompte', component: MyAccountComponent },
   { path: 'createAccount', component: CreateAccountComponent },
-  { path: 'home', component: HomeComponent }
+  { path: 'home', component: HomeComponent },
+  { path: 'station/:idStation', component: StationDetailsComponent }
 
 ];
 

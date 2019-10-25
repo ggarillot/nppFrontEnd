@@ -19,9 +19,6 @@ export class ListStationComponent implements OnInit {
 
     this.genericStationService.findAll().subscribe((response) => {
       this.stationList = response;
-
-      console.log(this.stationList);
-
     });
   }
 }

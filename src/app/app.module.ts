@@ -1,3 +1,5 @@
+import { GenericStationService } from 'src/app/service/generic-station.service';
+import { ListPowerBankByStationComponent } from './station/list-power-bank-by-station/list-power-bank-by-station.component';
 import { SubscriptionService } from './service/subscription.service';
 import { PowerBankService } from './service/power-bank.service';
 import { NormalStationService } from './service/normal-station.service';
@@ -31,10 +33,11 @@ import { FormsModule, NgModel, FormGroup, ReactiveFormsModule } from '@angular/f
 import {
   MatButtonModule, MatCardModule, MatInputModule, MatDialogModule, MatTableModule,
   MatMenuModule, MatIconModule, MatCardContent, MatProgressSpinnerModule,
-  MatExpansionModule, MatDividerModule, MatListModule
+  MatExpansionModule, MatDividerModule, MatListModule, MatProgressBarModule
 } from '@angular/material';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { MyAccountComponent } from './my-account/my-account.component';
+import { StationDetailsComponent } from './station/station-details/station-details.component';
 
 
 @NgModule({
@@ -44,12 +47,14 @@ import { MyAccountComponent } from './my-account/my-account.component';
     ListStationComponent,
     ListPowerBankComponent,
     ListSubscriptionComponent,
+    ListPowerBankByStationComponent,
     HomeComponent,
     HeaderComponent,
     FooterComponent,
     LoginComponent,
     CreateAccountComponent,
-    MyAccountComponent
+    MyAccountComponent,
+    StationDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -69,9 +74,10 @@ import { MyAccountComponent } from './my-account/my-account.component';
     MatDividerModule,
     MatListModule,
     MatExpansionModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressBarModule
   ],
-  providers: [NormalStationService, PowerBankService, SubscriptionService, StandardUserService, StandardUser],
+  providers: [NormalStationService, PowerBankService, SubscriptionService, StandardUserService, StandardUser, GenericStationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
