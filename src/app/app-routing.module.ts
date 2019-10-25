@@ -22,9 +22,7 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardService] },
   { path: 'monCompte', component: MyAccountComponent, canActivate: [AuthGuardService] },
   { path: 'createAccount', component: CreateAccountComponent },
-  { path: 'home', component: HomeComponent }
-
-
+  { path: 'home', component: HomeComponent },
   { path: 'station', component: ListStationComponent },
   { path: 'powerBank', component: ListPowerBankComponent },
   { path: 'subscription', component: ListSubscriptionComponent },

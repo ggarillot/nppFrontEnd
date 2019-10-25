@@ -49,7 +49,7 @@ import { QuiSommesNousComponent } from './infos/qui-sommes-nous/qui-sommes-nous.
     LoginComponent,
     CreateAccountComponent,
     MyAccountComponent,
-    LogoutComponent
+    LogoutComponent,
     StationDetailsComponent,
     QuiSommesNousComponent
   ],
