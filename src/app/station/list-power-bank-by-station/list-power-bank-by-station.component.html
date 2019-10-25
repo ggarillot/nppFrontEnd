@@ -1,0 +1,26 @@
+<br>
+<div class="row">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">Détails des batteries de la station {{item.genericStation.name}}</div>
+            <div class="card-body">
+                <table class="table">
+                    <thead class="thead-light">
+                        <th>Id</th>
+                        <th>Status</th>
+                        <th>Niveau</th>
+                        
+
+
+                    </thead>
+                    <tr *ngFor="let item of powerBankList">
+                        <td>{{item.id}}</td>
+                        <td>{{item.status}}</td>
+                        <td>{{item.level}}</td>
+                        
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
