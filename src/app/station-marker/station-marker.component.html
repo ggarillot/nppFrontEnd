@@ -12,7 +12,11 @@
                             </mat-card-title>
                         </mat-card-header>
                         <mat-card-content>
-                            {{station.localisation.longitude}},{{station.localisation.latitude}}
+                            Position : {{station.localisation.longitude}},{{station.localisation.latitude}} <br />
+                            Batteries : {{station.powerBankList.length}} <br />
+                            Emplacements : {{station.nslots - station.powerBankList.length}} <br />
+                            <button mat-stroked-button color="primary"><a
+                                    routerLink="/station/{{station.id}}">Détails</a></button>
                         </mat-card-content>
                     </mat-card>
                 </div>

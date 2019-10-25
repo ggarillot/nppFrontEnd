@@ -1,3 +1,4 @@
+import { PowerBank } from 'src/app/model/PowerBank';
 import { StationMarkerComponent } from './../station-marker/station-marker.component';
 import { GenericStation } from './../model/GenericStation';
 import { GenericStationService } from './../service/generic-station.service';
@@ -34,7 +35,12 @@ export class BigMapComponent implements AfterViewInit, OnInit {
     this.stationService.findAll().subscribe(
       (list: GenericStation[]) => {
         for (const station of list) {
-          this.stationMap.set(station.id, station);
+          this.stationService.getPowerBankListOfThisStation(station.id).subscribe(
+            (listP: PowerBank[]) => {
+              station.powerBankList = listP;
+              this.stationMap.set(station.id, station);
+            }
+          );
         }
       }
     );

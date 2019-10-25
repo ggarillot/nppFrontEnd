@@ -1,5 +1,6 @@
 #popupId {
-    display:none;
+    display: none;
+    width:250px;
 }
 
 .stationPopup {
