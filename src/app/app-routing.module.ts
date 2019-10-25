@@ -1,3 +1,4 @@
+import { QuiSommesNousComponent } from './infos/qui-sommes-nous/qui-sommes-nous.component';
 import { StationDetailsComponent } from './station/station-details/station-details.component';
 import { ListPowerBankByStationComponent } from './station/list-power-bank-by-station/list-power-bank-by-station.component';
 
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'monCompte', component: MyAccountComponent },
   { path: 'createAccount', component: CreateAccountComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'station/:idStation', component: StationDetailsComponent }
+  { path: 'station/:idStation', component: StationDetailsComponent },
+  { path: 'qui', component: QuiSommesNousComponent }
 
 ];
 

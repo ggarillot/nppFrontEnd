@@ -32,6 +32,7 @@ import {
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { StationDetailsComponent } from './station/station-details/station-details.component';
+import { QuiSommesNousComponent } from './infos/qui-sommes-nous/qui-sommes-nous.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { StationDetailsComponent } from './station/station-details/station-detai
     LoginComponent,
     CreateAccountComponent,
     MyAccountComponent,
-    StationDetailsComponent
+    StationDetailsComponent,
+    QuiSommesNousComponent
   ],
   imports: [
     BrowserModule,
