@@ -16,7 +16,7 @@
                     <tr *ngFor="let item of powerBankList">
                         <td>{{item.id}}</td>
                         <td>{{item.status}}</td>
-                        <td>{{item.level}}</td>
+                        <td><mat-progress-bar mode="determinate" value="{{item.level*100}}"></mat-progress-bar>{{item.level*100}}%</td>
                         <td *ngIf="item.genericStation!==null; else pasDeStation">{{item.genericStation.id}}</td>
                         <ng-template #pasDeStation>
                             <td>Pas de station associée </td>
