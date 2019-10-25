@@ -1,7 +1,8 @@
+import { StationMarkerComponent } from './../station-marker/station-marker.component';
 import { GenericStation } from './../model/GenericStation';
 import { GenericStationService } from './../service/generic-station.service';
 import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
-import { MapComponent } from 'ngx-openlayers';
+import { MapComponent, OverlayComponent } from 'ngx-openlayers';
 import { Feature, MapBrowserEvent, Overlay } from 'openlayers';
 
 @Component({
@@ -14,15 +15,15 @@ export class BigMapComponent implements AfterViewInit, OnInit {
   @ViewChild('map', { static: false })
   public map: MapComponent;
 
+  @ViewChild('marker', { static: false })
+  public marker: StationMarkerComponent;
+
   public lonCoord: number;
   public latCoord: number;
 
-  public lonCoordMarker: number;
-  public latCoordMarker: number;
-
   public zoom: number;
 
-  public stationMap;
+  public stationMap: Map<number, GenericStation>;
 
   constructor(private stationService: GenericStationService) {
     this.stationMap = new Map();
@@ -46,8 +47,6 @@ export class BigMapComponent implements AfterViewInit, OnInit {
       this.lonCoord = pos.lng;
       this.latCoord = pos.lat;
 
-      this.lonCoordMarker = pos.lng;
-      this.latCoordMarker = pos.lat;
       this.zoom = 10;
     });
 
@@ -70,36 +69,23 @@ export class BigMapComponent implements AfterViewInit, OnInit {
   handleClick(event: MapBrowserEvent) {
 
     const map = event.map;
-    const features = event.map.getFeaturesAtPixel(event.pixel);
+    const features = map.getFeaturesAtPixel(event.pixel);
     if (features && features.length > 0) {
       const feature = features[0] as Feature;
 
       if (feature.getId() === 'currentLocation') {
         console.log('you are here');
+        document.getElementById('popupId').style.display = 'none';
       } else {
         const stationId = feature.getId() as number;
-        const coord = this.stationMap.get(stationId);
+        const station = this.stationMap.get(stationId);
 
-        this.lonCoordMarker = coord.longitude;
-        this.latCoordMarker = coord.latitude;
+        this.marker.setStation(station);
 
         document.getElementById('popupId').style.display = 'block';
-        document.getElementById('popupIdContent').innerHTML = this.lonCoordMarker + ',' + this.latCoordMarker;
       }
     } else {
       document.getElementById('popupId').style.display = 'none';
     }
   }
 }
-
-class StationCoordinates {
-
-  constructor(lo: number, la: number) {
-    this.longitude = lo;
-    this.latitude = la;
-  }
-
-  public longitude: number;
-  public latitude: number;
-}
-

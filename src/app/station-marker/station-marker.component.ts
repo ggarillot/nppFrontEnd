@@ -9,8 +9,13 @@ import { Component, OnInit } from '@angular/core';
 export class StationMarkerComponent implements OnInit {
 
   private station: GenericStation;
-  
+
   constructor() { }
+
+  public setStation(station: GenericStation): void {
+    this.station = station;
+    console.log(this.station);
+  }
 
   ngOnInit() {
   }
