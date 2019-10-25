@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 })
 export class NormalStationService {
 
-  private static uri = 'http://localhost:8080/npp/normalStation';
+  private static uri = 'http://localhost:8080/npp/station';
 
   constructor(private http: HttpClient) { }
 
@@ -30,6 +30,6 @@ export class NormalStationService {
   }
 
   public findAll(): Observable<NormalStation[]> {
-    return this.http.get<NormalStation[]>(NormalStationService.uri + 'get');
+    return this.http.get<NormalStation[]>(NormalStationService.uri + '/get');
   }
 }

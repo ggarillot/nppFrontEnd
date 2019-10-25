@@ -9,7 +9,7 @@ import { GenericStation } from '../model/GenericStation';
 })
 export class GenericStationService {
 
-  private static uri = 'http://localhost:8080/npp/genericStation';
+  private static uri = 'http://localhost:8080/npp/gstation';
 
   constructor(private http: HttpClient) { }
 
@@ -30,6 +30,6 @@ export class GenericStationService {
   }
 
   public findAll(): Observable<GenericStation[]> {
-    return this.http.get<GenericStation[]>(GenericStationService.uri + 'get');
+    return this.http.get<GenericStation[]>(GenericStationService.uri + '/get');
   }
 }
