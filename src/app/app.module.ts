@@ -21,6 +21,7 @@ import { FormsModule, NgModel, FormGroup, ReactiveFormsModule } from '@angular/f
 import { MatButtonModule, MatCardModule, MatInputModule, MatDialogModule, MatTableModule, MatMenuModule, MatIconModule, MatCardContent, MatProgressSpinnerModule, MatExpansionModule, MatDividerModule, MatListModule } from '@angular/material';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { MyAccountComponent } from './my-account/my-account.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MyAccountComponent } from './my-account/my-account.component';
     FooterComponent,
     LoginComponent,
     CreateAccountComponent,
-    MyAccountComponent
+    MyAccountComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
