@@ -13,11 +13,17 @@ export class GenericUserService {
 
   constructor(private http: HttpClient) { }
 
+  // public add(genericUser: GenericUser): Observable<GenericUser> {
+  //   // const username = 'a';
+  //   // const password = 'a';
+  //   // const headers = new HttpHeaders({ Authorization: 'Basic' + btoa(username + ':' + password) });
+  //   return this.http.post<GenericUser>(GenericUserService.uri + '/add', genericUser/*, { headers }*/);
+  // }
   public add(genericUser: GenericUser): Observable<GenericUser> {
     // const username = 'a';
     // const password = 'a';
     // const headers = new HttpHeaders({ Authorization: 'Basic' + btoa(username + ':' + password) });
-    return this.http.post<GenericUser>(GenericUserService.uri + '/add', genericUser/*, { headers }*/);
+    return this.http.post<GenericUser>('http://localhost:8080/npp/register', genericUser/*, { headers }*/);
   }
 
   public update(genericUser: GenericUser): Observable<GenericUser> {

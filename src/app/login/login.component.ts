@@ -28,21 +28,6 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    // if (this.sUser.email === 'admin' && this.sUser.password === 'admin') {
-    //   if (this.email === 'admin' && this.password === 'admin') {
-    //   this.router.navigate(['home']);
-    //   alert('Vous êtes connecté');
-    // } else {
-    //   alert('Invalid');
-    // }
-
-    // if (this.loginservice.authenticate(this.form.value.username, this.form.value.password)) {
-    //   this.router.navigate(['home']);
-    //   this.invalidLogin = false;
-    // } else {
-    //   this.invalidLogin = true;
-    // }
-
     (this.loginservice.authenticate(this.form.value.username, this.form.value.password).subscribe(
       data => {
         this.router.navigate(['home']);

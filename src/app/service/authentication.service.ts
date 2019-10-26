@@ -14,22 +14,11 @@ export class AuthenticationService {
   constructor(private userService: GenericUserService, private httpClient: HttpClient) { }
 
   authenticate(username: string, password: string) {
-
-
-    // if (username === 'admin' && password === 'password') {
-    //   sessionStorage.setItem('username', username);
-    //   return true;
-    // } else {
-    //   return false;
-    // }
-    const headers = new HttpHeaders({
-      Authorization: 'Basic ' + btoa(username + ':' + password)
-    });
-    return this.httpClient.get<User>('http://localhost:8080/npp/guser/validateLogin', { headers })
+    return this.httpClient.post<any>('http://localhost:8080/npp/authenticate', { username, password })
       .pipe(map(userData => {
         sessionStorage.setItem('username', username);
-        const authString = 'Basic' + btoa('username' + ':' + 'password');
-        sessionStorage.setItem('basicauth', authString);
+        const tokenStr = 'Bearer ' + userData.token;
+        sessionStorage.setItem('token', tokenStr);
         return userData;
       }));
 
