@@ -28,7 +28,8 @@ export class AuthenticationService {
     return this.httpClient.get<User>('http://localhost:8080/npp/guser/validateLogin', { headers })
       .pipe(map(userData => {
         sessionStorage.setItem('username', username);
-
+        const authString = 'Basic' + btoa('username' + ':' + 'password');
+        sessionStorage.setItem('basicauth', authString);
         return userData;
       }));
 

@@ -14,38 +14,38 @@ export class GenericUserService {
   constructor(private http: HttpClient) { }
 
   public add(genericUser: GenericUser): Observable<GenericUser> {
-    const username = 'a';
-    const password = 'a';
-    const headers = new HttpHeaders({ Authorization: 'Basic' + btoa(username + ':' + password) });
-    return this.http.post<GenericUser>(GenericUserService.uri + '/add', genericUser, { headers });
+    // const username = 'a';
+    // const password = 'a';
+    // const headers = new HttpHeaders({ Authorization: 'Basic' + btoa(username + ':' + password) });
+    return this.http.post<GenericUser>(GenericUserService.uri + '/add', genericUser/*, { headers }*/);
   }
 
   public update(genericUser: GenericUser): Observable<GenericUser> {
-    const username = 'a';
-    const password = 'a';
-    const headers = new HttpHeaders({ Authorization: 'Basic' + btoa(username + ':' + password) });
-    return this.http.put<GenericUser>(GenericUserService.uri + '/update', genericUser, { headers });
+    // const username = 'a';
+    // const password = 'a';
+    // const headers = new HttpHeaders({ Authorization: 'Basic' + btoa(username + ':' + password) });
+    return this.http.put<GenericUser>(GenericUserService.uri + '/update', genericUser/*, { headers }*/);
   }
 
   public delete(id: number) {
-    const username = 'a';
-    const password = 'a';
-    const headers = new HttpHeaders({ Authorization: 'Basic' + btoa(username + ':' + password) });
-    return this.http.delete<GenericUser>(GenericUserService.uri + '/delete/' + { id }, { headers });
+    // const username = 'a';
+    // const password = 'a';
+    // const headers = new HttpHeaders({ Authorization: 'Basic' + btoa(username + ':' + password) });
+    return this.http.delete<GenericUser>(GenericUserService.uri + '/delete/' + { id }/*, { headers }*/);
   }
 
   public getById(id: number): Observable<GenericUser> {
-    const username = 'a';
-    const password = 'a';
-    const headers = new HttpHeaders({ Authorization: 'Basic' + btoa(username + ':' + password) });
-    return this.http.get<GenericUser>(GenericUserService.uri + '/get/' + { id }, { headers });
+    // const username = 'a';
+    // const password = 'a';
+    // const headers = new HttpHeaders({ Authorization: 'Basic' + btoa(username + ':' + password) });
+    return this.http.get<GenericUser>(GenericUserService.uri + '/get/' + { id }/*, { headers }*/);
   }
 
   public findAll(): Observable<GenericUser[]> {
-    const username = 'a';
-    const password = 'a';
-    const headers = new HttpHeaders({ Authorization: 'Basic' + btoa(username + ':' + password) });
-    return this.http.get<GenericUser[]>(GenericUserService.uri + '/get', { headers });
+    // const username = 'a';
+    // const password = 'a';
+    // const headers = new HttpHeaders({ Authorization: 'Basic' + btoa(username + ':' + password) });
+    return this.http.get<GenericUser[]>(GenericUserService.uri + '/get'/*, { headers }*/);
   }
 
   // public findByUsername(username: string): Observable<GenericUser> {
