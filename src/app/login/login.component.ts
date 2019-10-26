@@ -4,7 +4,7 @@ import { Administrator } from './../model/Administrator';
 import { StandardUser } from './../model/StandardUser';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {MatDialog} from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { invalid } from '@angular/compiler/src/render3/view/util';
 
 @Component({
@@ -36,13 +36,26 @@ export class LoginComponent implements OnInit {
     //   alert('Invalid');
     // }
 
-    if (this.loginservice.authenticate(this.form.value.username, this.form.value.password)) {
-      this.router.navigate(['home']);
-      this.invalidLogin = false;
-    } else {
-      this.invalidLogin = true;
-    }
+    // if (this.loginservice.authenticate(this.form.value.username, this.form.value.password)) {
+    //   this.router.navigate(['home']);
+    //   this.invalidLogin = false;
+    // } else {
+    //   this.invalidLogin = true;
+    // }
 
+    (this.loginservice.authenticate(this.form.value.username, this.form.value.password).subscribe(
+      data => {
+        this.router.navigate(['home']);
+        this.invalidLogin = false;
+        console.log(this.form.value.username);
+
+      }, error => {
+        this.invalidLogin = true;
+        console.log(this.form.value);
+      }
+    ));
   }
 
 }
+
+
