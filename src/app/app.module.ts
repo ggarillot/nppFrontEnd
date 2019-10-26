@@ -3,6 +3,7 @@ import { ListPowerBankByStationComponent } from './station/list-power-bank-by-st
 import { SubscriptionService } from './service/subscription.service';
 import { PowerBankService } from './service/power-bank.service';
 import { NormalStationService } from './service/normal-station.service';
+import { GeoJsonRoutingService } from './service/geo-json-routing.service';
 import { StandardUser } from './model/StandardUser';
 import { RouterModule } from '@angular/router';
 import { StandardUserService } from './service/standard-user.service';
@@ -78,7 +79,8 @@ import { QuiSommesNousComponent } from './infos/qui-sommes-nous/qui-sommes-nous.
     ReactiveFormsModule,
     MatProgressBarModule
   ],
-  providers: [NormalStationService, PowerBankService, SubscriptionService, StandardUserService, StandardUser, GenericStationService],
+  providers: [NormalStationService, PowerBankService, SubscriptionService,
+    StandardUserService, StandardUser, GenericStationService, GeoJsonRoutingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
