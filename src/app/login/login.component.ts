@@ -1,5 +1,5 @@
 import { AuthenticationService } from './../service/authentication.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Administrator } from './../model/Administrator';
 import { StandardUser } from './../model/StandardUser';
 import { Component, OnInit } from '@angular/core';
@@ -17,13 +17,14 @@ export class LoginComponent implements OnInit {
   admin: Administrator;
   form: FormGroup;
   invalidLogin = false;
+  hide = true;
 
   constructor(private router: Router, private loginservice: AuthenticationService) { }
 
   ngOnInit() {
     this.form = new FormGroup({
-      username: new FormControl(),
-      password: new FormControl()
+      username: new FormControl(null, Validators.required),
+      password: new FormControl(null, Validators.required)
     });
   }
 
