@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardService] },
-  { path: 'monCompte', component: MyAccountComponent, canActivate: [AuthGuardService] },
+  { path: 'monCompte/:username', component: MyAccountComponent, canActivate: [AuthGuardService] },
   { path: 'createAccount', component: CreateAccountComponent },
   { path: 'home', component: HomeComponent },
   { path: 'station', component: ListStationComponent },

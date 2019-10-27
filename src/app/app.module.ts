@@ -1,3 +1,4 @@
+import { GenericUserService } from './service/generic-user.service';
 import { BasicAuthHttpInterceptorService } from './service/basic-auth-http-interceptor.service';
 import { GenericStationService } from 'src/app/service/generic-station.service';
 import { ListPowerBankByStationComponent } from './station/list-power-bank-by-station/list-power-bank-by-station.component';
@@ -76,7 +77,8 @@ import { QuiSommesNousComponent } from './infos/qui-sommes-nous/qui-sommes-nous.
     MatProgressBarModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: BasicAuthHttpInterceptorService, multi: true},
-     NormalStationService, PowerBankService, SubscriptionService, StandardUserService, StandardUser, GenericStationService],
+     // tslint:disable-next-line:max-line-length
+     NormalStationService, PowerBankService, SubscriptionService, StandardUserService, StandardUser, GenericUserService, GenericStationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

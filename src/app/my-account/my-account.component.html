@@ -8,17 +8,20 @@
                 Information du compte
             </mat-panel-title>
         </mat-expansion-panel-header>
+        <table>
         <mat-list>
-            <mat-list-item>Nom</mat-list-item>
+            <mat-list-item>
+                <p matLine>Nom</p> <p matLine></p>{{user.name}}</mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item>Prénom</mat-list-item>
+            <mat-list-item><p matLine>Prénom</p> {{user.surname}}</mat-list-item>
             <mat-divider></mat-divider>
-            <mat-list-item>Email</mat-list-item>
+            <mat-list-item><p matLine>Email</p> {{user.email}}</mat-list-item>
             <mat-divider></mat-divider>
             <mat-list-item>Mot de passe</mat-list-item>
             <mat-divider></mat-divider>
             <mat-list-item><button mat-raised-button (click)="modifyAccount()" color="primary">Modifier</button></mat-list-item>
         </mat-list>
+    </table>
     </mat-expansion-panel>
 
     <!-- Historique -->
