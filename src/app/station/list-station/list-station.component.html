@@ -12,6 +12,9 @@
                         <th>Nombre d'emplacement</th>
                         <th>Nb de batteries</th>
                         <th>status</th>
+                        <th></th>
+                        <th *ngIf="loginService.isAdmin()"></th>
+                        <th *ngIf="loginService.isAdmin()"></th>
 
                     </thead>
                     <tr *ngFor="let item of stationList">
@@ -23,10 +26,10 @@
                         <td>{{item.status}}</td>
                         <td><button mat-stroked-button color="primary"><a
                                     routerLink="/station/{{item.id}}">Détails</a></button></td>
-                        <td> <button *ngIf="item.powerBankList.length===0" mat-raised-button (click)="delete(item.id)"
+                        <td> <button *ngIf="item.powerBankList.length===0 && loginService.isAdmin()" mat-raised-button (click)="delete(item.id)"
                                 color="primary">Supprimer</button></td>
-                        <td> <button mat-raised-button color="primary"><a
-                                    routerLink="/station/update/{{item.id}}">modifier</a></button></td>
+                        <td> <button *ngIf="loginService.isAdmin()" mat-raised-button color="primary"><a id="link-white"
+                                    routerLink="/station/update/{{item.id}}">Modifier</a></button></td>
                     </tr>
                 </table>
             </div>

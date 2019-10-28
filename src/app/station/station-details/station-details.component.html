@@ -7,7 +7,7 @@
         <table *ngIf="genericStation">
             <tr>
                 <th>
-                    <h6>position </h6>
+                    <h6>Position </h6>
                 </th>
             </tr>
             <tr>
@@ -91,12 +91,25 @@
                 </table>
                 <table class="table">
                     <tbody>
-                        <tr *ngFor="let item of emptySlots">
+                        <!-- <tr *ngFor="let item of emptySlots">
                             <button mat-raised-button (click)="attachPowerBank(genericStation.id)"
                                 color="primary">Attacher une batterie</button>
+                        </tr> -->
+                        <!-- <tr *ngIf="emptySlots !== null">
+                            <p>Il reste {{emptySlots.length}} emplacement(s) libre(s) </p>
+                            <button mat-raised-button (click)="attachPowerBank(genericStation.id)"
+                                color="primary">Attacher une batterie</button>
+                        </tr>
+
+                        <tr *ngIf="emptySlots === null">
+                            <p>Aucune batterie ne peut être attachée</p>
+                        </tr> -->
+                        <tr>
                             <button *ngIf="hasRental" mat-raised-button (click)="returnBattery()"
                                 color="primary">Rendre la batterie</button>
                         </tr>
+
+
                     </tbody>
                 </table>
 

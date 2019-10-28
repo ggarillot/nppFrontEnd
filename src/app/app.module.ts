@@ -33,7 +33,7 @@ import { FormsModule, NgModel, FormGroup, ReactiveFormsModule } from '@angular/f
 import {
   MatButtonModule, MatCardModule, MatInputModule, MatDialogModule, MatTableModule,
   MatMenuModule, MatIconModule, MatCardContent, MatProgressSpinnerModule,
-  MatExpansionModule, MatDividerModule, MatListModule, MatProgressBarModule, MatRadioModule
+  MatExpansionModule, MatDividerModule, MatListModule, MatProgressBarModule, MatRadioModule, MatSidenav, MatSidenavModule
 } from '@angular/material';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { MyAccountComponent } from './my-account/my-account.component';
@@ -43,6 +43,9 @@ import { QuiSommesNousComponent } from './infos/qui-sommes-nous/qui-sommes-nous.
 import { AdminComponent } from './admin/admin.component';
 import { AddAdminComponent } from './admin/add-admin/add-admin.component';
 import { FormulaireStationComponent } from './station/formulaire-station/formulaire-station.component';
+import { InformationComponent } from './my-account/information/information.component';
+import { WelcomeAdminComponent } from './admin/welcome-admin/welcome-admin.component';
+import { FailComponent } from './fail/fail.component';
 
 
 
@@ -66,7 +69,10 @@ import { FormulaireStationComponent } from './station/formulaire-station/formula
     QuiSommesNousComponent,
     AdminComponent,
     AddAdminComponent,
-    FormulaireStationComponent
+    FormulaireStationComponent,
+    InformationComponent,
+    WelcomeAdminComponent,
+    FailComponent
 
   ],
   imports: [
@@ -89,7 +95,8 @@ import { FormulaireStationComponent } from './station/formulaire-station/formula
     MatExpansionModule,
     MatRadioModule,
     ReactiveFormsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSidenavModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: BasicAuthHttpInterceptorService, multi: true},
      // tslint:disable-next-line:max-line-length

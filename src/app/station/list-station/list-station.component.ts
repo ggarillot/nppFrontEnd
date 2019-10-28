@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../service/authentication.service';
 import { PowerBank } from 'src/app/model/PowerBank';
 import { NormalStationService } from './../../service/normal-station.service';
 import { NormalStation } from './../../model/NormalStation';
@@ -16,7 +17,8 @@ export class ListStationComponent implements OnInit {
   stationList: GenericStation[];
   powerBankList: PowerBank[];
 
-  constructor(private genericStationService: GenericStationService, private router: Router, private activatedRoute: ActivatedRoute) {
+  // tslint:disable-next-line:max-line-length
+  constructor(private loginService: AuthenticationService, private genericStationService: GenericStationService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.stationList = new Array<GenericStation>();
   }
 

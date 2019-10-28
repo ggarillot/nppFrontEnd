@@ -1,0 +1,8 @@
+station-card {
+    align-items: center;
+}
+
+card-content,table, th, tr, td, h6 {
+    text-align: center;
+    align-content: center;
+}
