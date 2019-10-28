@@ -21,11 +21,11 @@ export class RentalService {
   }
 
   public delete(id: number) {
-    return this.http.delete<Rental>(RentalService.uri + '/delete/' + { id });
+    return this.http.delete<Rental>(RentalService.uri + '/delete/' + id);
   }
 
   public getById(id: number): Observable<Rental> {
-    return this.http.get<Rental>(RentalService.uri + '/get/' + { id });
+    return this.http.get<Rental>(RentalService.uri + '/get/' + id);
   }
 
   public findAll(): Observable<Rental[]> {

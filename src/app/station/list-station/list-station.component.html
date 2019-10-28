@@ -9,7 +9,8 @@
                         <th>Id</th>
                         <th>Longitude</th>
                         <th>Latitude</th>
-                        <th>Nombre de batteries</th>
+                        <th>Nombre d'emplacement</th>
+                        <th>Nb de batteries</th>
                         <th>status</th>
 
                     </thead>
@@ -18,9 +19,14 @@
                         <td>{{item.localisation.longitude}}</td>
                         <td>{{item.localisation.latitude}}</td>
                         <td>{{item.nslots}}</td>
+                        <td>{{item.powerBankList.length}}</td>
                         <td>{{item.status}}</td>
                         <td><button mat-stroked-button color="primary"><a
                                     routerLink="/station/{{item.id}}">Détails</a></button></td>
+                        <td> <button *ngIf="item.powerBankList.length===0" mat-raised-button (click)="delete(item.id)"
+                                color="primary">Supprimer</button></td>
+                        <td> <button mat-raised-button color="primary"><a
+                                    routerLink="/station/update/{{item.id}}">modifier</a></button></td>
                     </tr>
                 </table>
             </div>

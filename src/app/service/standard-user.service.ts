@@ -21,11 +21,11 @@ export class StandardUserService {
   }
 
   public delete(id: number) {
-    return this.http.delete<StandardUser>(StandardUserService.uri + '/delete/' + { id });
+    return this.http.delete<StandardUser>(StandardUserService.uri + '/delete/' + id);
   }
 
   public getById(id: number): Observable<StandardUser> {
-    return this.http.get<StandardUser>(StandardUserService.uri + '/get/' + { id });
+    return this.http.get<StandardUser>(StandardUserService.uri + '/get/' + id);
   }
 
   public findAll(): Observable<StandardUser[]> {

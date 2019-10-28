@@ -23,7 +23,7 @@ export class StationDetailsComponent implements OnInit {
 
         station.powerBankList = list;
         this.genericStation = station;
-      });
+      }); 
     });
 
 

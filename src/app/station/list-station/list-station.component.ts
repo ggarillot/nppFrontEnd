@@ -1,6 +1,7 @@
+import { PowerBank } from 'src/app/model/PowerBank';
 import { NormalStationService } from './../../service/normal-station.service';
 import { NormalStation } from './../../model/NormalStation';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { GenericStation } from 'src/app/model/GenericStation';
 import { GenericStationService } from 'src/app/service/generic-station.service';
@@ -13,12 +14,31 @@ import { GenericStationService } from 'src/app/service/generic-station.service';
 export class ListStationComponent implements OnInit {
 
   stationList: GenericStation[];
-  constructor(private genericStationService: GenericStationService, private router: Router) { }
+  powerBankList: PowerBank[];
+
+  constructor(private genericStationService: GenericStationService, private router: Router, private activatedRoute: ActivatedRoute) {
+    this.stationList = new Array<GenericStation>();
+  }
 
   ngOnInit() {
+    this.loadList();
+  }
 
-    this.genericStationService.findAll().subscribe((response) => {
-      this.stationList = response;
+  loadList(): void {
+    this.stationList = new Array<GenericStation>();
+    this.genericStationService.findAll().subscribe((listStationReq) => {
+      listStationReq.forEach(station => {
+        this.genericStationService.getPowerBankListOfThisStation(station.id).subscribe((listPowerBankReq) => {
+          station.powerBankList = listPowerBankReq;
+          this.stationList.push(station);
+        });
+      });
+    });
+  }
+
+  delete(id: number) {
+    this.genericStationService.delete(id).subscribe((response) => {
+      this.loadList();
     });
   }
 }
