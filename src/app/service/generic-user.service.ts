@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 export class GenericUserService {
 
   private static uri = 'http://localhost:8080/npp/guser';
-  
+
 
   constructor(private http: HttpClient) { }
 
@@ -30,11 +30,11 @@ export class GenericUserService {
   }
 
   public findAll(): Observable<GenericUser[]> {
-   return this.http.get<GenericUser[]>(GenericUserService.uri + '/get');
+    return this.http.get<GenericUser[]>(GenericUserService.uri + '/get');
   }
 
   public findByUsername(username: string): Observable<GenericUser> {
-    return this.http.get<GenericUser>(GenericUserService.uri + '/getuser/' + username );
+    return this.http.get<GenericUser>(GenericUserService.uri + '/getuser/' + username);
   }
 
 }

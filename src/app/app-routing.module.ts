@@ -30,7 +30,7 @@ const routes: Routes = [
   { path: 'createAccount', component: CreateAccountComponent },
   { path: 'home', component: HomeComponent },
   { path: 'station', component: ListStationComponent },
-  { path: 'powerBank', component: ListPowerBankComponent },
+  // { path: 'powerBank', component: ListPowerBankComponent },
   { path: 'subscription', component: ListSubscriptionComponent },
   { path: 'station/:idStation', component: StationDetailsComponent },
   { path: 'qui', component: QuiSommesNousComponent },
