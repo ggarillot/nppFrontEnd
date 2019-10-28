@@ -21,11 +21,11 @@ export class PowerBankService {
   }
 
   public delete(id: number) {
-    return this.http.delete<PowerBank>(PowerBankService.uri + '/delete/' + { id });
+    return this.http.delete<PowerBank>(PowerBankService.uri + '/delete/' + id);
   }
 
   public getById(id: number): Observable<PowerBank> {
-    return this.http.get<PowerBank>(PowerBankService.uri + '/get/' + { id });
+    return this.http.get<PowerBank>(PowerBankService.uri + '/get/' + id);
   }
 
   public findAll(): Observable<PowerBank[]> {
