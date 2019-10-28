@@ -15,7 +15,7 @@ export class AdministratorService {
   constructor(private http: HttpClient) { }
 
   public add(administrator: Administrator): Observable<Administrator> {
-    return this.http.post<Administrator>(AdministratorService.uri + '/add', administrator);
+    return this.http.post<Administrator>('http://localhost:8080/npp/registerAdmin', administrator);
   }
 
   public update(administrator: Administrator): Observable<Administrator> {

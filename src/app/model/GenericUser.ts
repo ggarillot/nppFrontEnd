@@ -13,6 +13,8 @@ export class GenericUser {
 
     email: string;
 
+    role: string;
+
     password: string;
 
     inscriptionDate: Date;

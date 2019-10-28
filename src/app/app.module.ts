@@ -36,6 +36,8 @@ import { MyAccountComponent } from './my-account/my-account.component';
 import { LogoutComponent } from './logout/logout.component';
 import { StationDetailsComponent } from './station/station-details/station-details.component';
 import { QuiSommesNousComponent } from './infos/qui-sommes-nous/qui-sommes-nous.component';
+import { AdminComponent } from './admin/admin.component';
+import { AddAdminComponent } from './admin/add-admin/add-admin.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { QuiSommesNousComponent } from './infos/qui-sommes-nous/qui-sommes-nous.
     MyAccountComponent,
     LogoutComponent,
     StationDetailsComponent,
-    QuiSommesNousComponent
+    QuiSommesNousComponent,
+    AdminComponent,
+    AddAdminComponent
   ],
   imports: [
     BrowserModule,

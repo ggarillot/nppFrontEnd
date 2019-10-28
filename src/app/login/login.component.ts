@@ -1,3 +1,4 @@
+import { GenericUserService } from './../service/generic-user.service';
 import { AuthenticationService } from './../service/authentication.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Administrator } from './../model/Administrator';
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
   invalidLogin = false;
   hide = true;
 
-  constructor(private router: Router, private loginservice: AuthenticationService) { }
+  constructor(private router: Router, private loginservice: AuthenticationService, private service: GenericUserService) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -31,13 +32,17 @@ export class LoginComponent implements OnInit {
   login(): void {
     (this.loginservice.authenticate(this.form.value.username, this.form.value.password).subscribe(
       data => {
-        this.router.navigate(['home']);
-        this.invalidLogin = false;
-        console.log(this.form.value.username);
+
+        this.service.findByUsername(this.form.value.username).subscribe(response => {
+          this.loginservice.user = response;
+          sessionStorage.setItem('role', response.role);
+          // console.log(sessionStorage.setItem('role', response.role));
+          this.router.navigate(['/home']);
+          this.invalidLogin = false;
+        });
 
       }, error => {
         this.invalidLogin = true;
-        console.log(this.form.value);
       }
     ));
   }

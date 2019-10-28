@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 })
 export class AuthenticationService {
   user: GenericUser;
+  // public isAdmin: boolean;
 
   constructor(private userService: GenericUserService, private httpClient: HttpClient) { }
 
@@ -30,7 +31,30 @@ export class AuthenticationService {
     return !(user === null);
   }
 
+  isAdmin() {
+    const role = sessionStorage.getItem('role');
+    if (role !== null) {
+      if (role === 'ADMIN') {
+        // console.log(role);
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  getUser() {
+    return sessionStorage.getItem('username');
+  }
+
+  getRole() {
+    return sessionStorage.getItem('role');
+  }
+
   logOut() {
     sessionStorage.removeItem('username');
+    sessionStorage.removeItem('role');
   }
 }

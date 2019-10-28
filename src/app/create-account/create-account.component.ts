@@ -14,7 +14,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class CreateAccountComponent implements OnInit {
   form: FormGroup;
   user: StandardUser;
-  invalidLogin = false;
+  hide = true;
 
   constructor(private userService: GenericUserService, private loginservice: AuthenticationService, private router: Router) { }
 
@@ -33,7 +33,7 @@ export class CreateAccountComponent implements OnInit {
       alert('Invalid');
     } else {
       this.userService.add(this.form.value).subscribe(response => this.router.navigate(['/home']));
-
+      alert('Compte créé');
       this.form.reset();
     }
 

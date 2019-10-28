@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 export class GenericUserService {
 
   private static uri = 'http://localhost:8080/npp/guser';
-
+  
 
   constructor(private http: HttpClient) { }
 
