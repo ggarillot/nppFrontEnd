@@ -1,3 +1,4 @@
+import { FormulaireStationComponent } from './station/formulaire-station/formulaire-station.component';
 import { QuiSommesNousComponent } from './infos/qui-sommes-nous/qui-sommes-nous.component';
 import { StationDetailsComponent } from './station/station-details/station-details.component';
 import { ListPowerBankByStationComponent } from './station/list-power-bank-by-station/list-power-bank-by-station.component';
@@ -15,7 +16,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
 
-  { path: 'station', component: ListStationComponent },
+  { path: 'stations', component: ListStationComponent },
   { path: 'powerBank', component: ListPowerBankComponent },
   { path: 'subscription', component: ListSubscriptionComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -24,7 +25,9 @@ const routes: Routes = [
   { path: 'createAccount', component: CreateAccountComponent },
   { path: 'home', component: HomeComponent },
   { path: 'station/:idStation', component: StationDetailsComponent },
-  { path: 'qui', component: QuiSommesNousComponent }
+  { path: 'qui', component: QuiSommesNousComponent },
+  { path: 'station', component: FormulaireStationComponent },
+  { path: 'station/update/:idStation', component: FormulaireStationComponent }
 
 ];
 

@@ -27,12 +27,13 @@ import { FormsModule, NgModel, FormGroup, ReactiveFormsModule } from '@angular/f
 import {
   MatButtonModule, MatCardModule, MatInputModule, MatDialogModule, MatTableModule,
   MatMenuModule, MatIconModule, MatCardContent, MatProgressSpinnerModule,
-  MatExpansionModule, MatDividerModule, MatListModule, MatProgressBarModule
+  MatExpansionModule, MatDividerModule, MatListModule, MatProgressBarModule, MatRadioModule
 } from '@angular/material';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { StationDetailsComponent } from './station/station-details/station-details.component';
 import { QuiSommesNousComponent } from './infos/qui-sommes-nous/qui-sommes-nous.component';
+import { FormulaireStationComponent } from './station/formulaire-station/formulaire-station.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { QuiSommesNousComponent } from './infos/qui-sommes-nous/qui-sommes-nous.
     CreateAccountComponent,
     MyAccountComponent,
     StationDetailsComponent,
-    QuiSommesNousComponent
+    QuiSommesNousComponent,
+    FormulaireStationComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +72,7 @@ import { QuiSommesNousComponent } from './infos/qui-sommes-nous/qui-sommes-nous.
     MatDividerModule,
     MatListModule,
     MatExpansionModule,
+    MatRadioModule,
     ReactiveFormsModule,
     MatProgressBarModule
   ],
