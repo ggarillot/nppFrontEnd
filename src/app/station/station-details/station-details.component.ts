@@ -1,3 +1,4 @@
+import { PowerBankService } from './../../service/power-bank.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { GenericStation } from './../../model/GenericStation';
 import { PowerBank } from './../../model/PowerBank';
@@ -12,21 +13,32 @@ import { GenericStationService } from 'src/app/service/generic-station.service';
 export class StationDetailsComponent implements OnInit {
 
   genericStation: GenericStation;
+  emptySlots: Array<number>;
 
-  constructor(private genericStationService: GenericStationService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private genericStationService: GenericStationService, private router: Router, private activatedRoute: ActivatedRoute) {
+    this.emptySlots = new Array<number>();
+  }
 
   ngOnInit() {
     const idStation = this.activatedRoute.snapshot.params.idStation as number;
-    this.genericStationService.getById(idStation).subscribe((station) => {
+    this.loadStation(idStation);
+  }
 
-      this.genericStationService.getPowerBankListOfThisStation(idStation).subscribe((list) => {
+  loadStation(id: number) {
+    this.genericStationService.getById(id).subscribe((station) => {
+
+      this.genericStationService.getPowerBankListOfThisStation(id).subscribe((list) => {
 
         station.powerBankList = list;
         this.genericStation = station;
-      }); 
+
+        const nEmptySlots = station.nslots - list.length;
+        this.emptySlots = new Array<number>(nEmptySlots);
+      });
     });
+  }
 
-
-
+  attachPowerBank(id: number) {
+    this.genericStationService.addPowerBank(id).subscribe(() => this.loadStation(id));
   }
 }

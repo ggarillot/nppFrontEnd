@@ -5,6 +5,7 @@ import { ListPowerBankByStationComponent } from './station/list-power-bank-by-st
 import { SubscriptionService } from './service/subscription.service';
 import { PowerBankService } from './service/power-bank.service';
 import { NormalStationService } from './service/normal-station.service';
+import { GeoJsonRoutingService } from './service/geo-json-routing.service';
 import { StandardUser } from './model/StandardUser';
 import { RouterModule } from '@angular/router';
 import { StandardUserService } from './service/standard-user.service';
@@ -16,6 +17,9 @@ import { AppComponent } from './app.component';
 import { BigMapComponent } from './big-map/big-map.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { StationMarkerComponent } from './station-marker/station-marker.component';
+
 import { ListStationComponent } from './station/list-station/list-station.component';
 import { ListPowerBankComponent } from './powerBank/list-power-bank/list-power-bank.component';
 import { ListSubscriptionComponent } from './subscription/list-subscription/list-subscription.component';
@@ -46,6 +50,7 @@ import { FormulaireStationComponent } from './station/formulaire-station/formula
   declarations: [
     AppComponent,
     BigMapComponent,
+    StationMarkerComponent,
     ListStationComponent,
     ListPowerBankComponent,
     ListSubscriptionComponent,
@@ -88,7 +93,7 @@ import { FormulaireStationComponent } from './station/formulaire-station/formula
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: BasicAuthHttpInterceptorService, multi: true},
      // tslint:disable-next-line:max-line-length
-     NormalStationService, PowerBankService, SubscriptionService, StandardUserService, StandardUser, GenericUserService, GenericStationService],
+     NormalStationService, PowerBankService, SubscriptionService, StandardUserService, StandardUser, GenericUserService, GenericStationService, GeoJsonRoutingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
