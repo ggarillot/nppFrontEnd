@@ -64,6 +64,7 @@
                         <th>Id</th>
                         <th>Status</th>
                         <th>Niveau</th>
+                        <th></th>
                     </thead>
                     <tbody>
                         <tr *ngFor="let item of genericStation.powerBankList">
@@ -81,6 +82,10 @@
                                 <mat-progress-bar mode="determinate" value="{{item.level*100}}"></mat-progress-bar>
                                 {{item.level*100}}%
                             </td>
+                            <td>
+                                <button *ngIf="authService.isUserLoggedIn() && !hasRental" mat-raised-button
+                                    (click)="rentBattery(item)" color="primary">Louer</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -90,14 +95,17 @@
                             <button mat-raised-button (click)="attachPowerBank(genericStation.id)"
                                 color="primary">Attacher une batterie</button>
                         </tr> -->
-                        <tr *ngIf="emptySlots !== null">
+                        <!-- <tr *ngIf="emptySlots !== null">
                             <p>Il reste {{emptySlots.length}} emplacement(s) libre(s) </p>
                             <button mat-raised-button (click)="attachPowerBank(genericStation.id)"
                                 color="primary">Attacher une batterie</button>
                         </tr>
 
                         <tr *ngIf="emptySlots === null">
-                            <p>Aucune batterie ne peut être attachée</p>
+                            <p>Aucune batterie ne peut être attachée</p> -->
+                            
+                            <button *ngIf="hasRental" mat-raised-button (click)="returnBattery()"
+                                color="primary">Rendre la batterie</button>
                         </tr>
 
 

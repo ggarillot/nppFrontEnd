@@ -1,10 +1,17 @@
+
 .main {
    margin-bottom: 100px;
+}
+
+body {
+    padding:100px;  
+
     align-content: center;
     text-align: center;
     flex-grow:1;
     
 }
+
 
  .push {
     height: 100px;
@@ -15,5 +22,6 @@
 	display:flex; /* 2 */
 	flex-direction:column; /* 3 */
 }
+
 
 
