@@ -31,4 +31,12 @@ export class RentalService {
   public findAll(): Observable<Rental[]> {
     return this.http.get<Rental[]>(RentalService.uri + '/get');
   }
+
+  public getRentalFromUser(idUser: number): Observable<Rental> {
+    return this.http.get<Rental>(RentalService.uri + '/get/' + idUser + '/rental');
+  }
+
+  public endOfRental(rental: Rental, idStation: number): Observable<Rental> {
+    return this.http.put<Rental>(RentalService.uri + '/finalize/' + idStation, rental);
+  }
 }
