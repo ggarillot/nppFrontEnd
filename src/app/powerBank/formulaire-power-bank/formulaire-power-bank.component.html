@@ -1,0 +1,41 @@
+<body>
+        <mat-card class="card">
+            <mat-card-header>
+                <mat-card-title>Formulaire des batteries</mat-card-title>
+            </mat-card-header>
+    
+            <mat-card-content>
+                
+                <form class="form" [formGroup]="form">
+                    <table cellspacing="0">
+                        <tr>
+                            <td>
+                                <mat-form-field>
+                                    <input matInput placeholder="nb d'emplacement" formControlName="nslots" name="nslots"
+                                        required />
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                        <tr>
+                            <mat-radio-group formControlName="status">
+                                <td>
+                                    <mat-radio-button value="open"> Ouverte</mat-radio-button>
+                                </td>
+                                <td>
+                                    <mat-radio-button value="close"> Fermée</mat-radio-button>
+                                </td>
+                                <td>
+                                    <mat-radio-button value="suspend"> Suspendue</mat-radio-button>
+                                </td>
+                            </mat-radio-group>
+                        </tr>
+                    </table>
+                </form>
+            </mat-card-content>
+            <mat-card-actions>
+                <button *ngIf="mode === 'add'" mat-raised-button (click)="add()" color="primary">Ajouter la station</button>
+                <button *ngIf="mode === 'update'" mat-raised-button (click)="update()" color="primary">Modifier la
+                    station</button>
+            </mat-card-actions>
+        </mat-card>
+    </body>

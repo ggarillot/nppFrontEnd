@@ -34,6 +34,7 @@ import { MyAccountComponent } from './my-account/my-account.component';
 import { StationDetailsComponent } from './station/station-details/station-details.component';
 import { QuiSommesNousComponent } from './infos/qui-sommes-nous/qui-sommes-nous.component';
 import { FormulaireStationComponent } from './station/formulaire-station/formulaire-station.component';
+import { FormulairePowerBankComponent } from './powerBank/formulaire-power-bank/formulaire-power-bank.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { FormulaireStationComponent } from './station/formulaire-station/formula
     MyAccountComponent,
     StationDetailsComponent,
     QuiSommesNousComponent,
-    FormulaireStationComponent
+    FormulaireStationComponent,
+    FormulairePowerBankComponent
   ],
   imports: [
     BrowserModule,
