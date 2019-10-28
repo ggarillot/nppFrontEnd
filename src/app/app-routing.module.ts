@@ -1,5 +1,6 @@
-import { AddAdminComponent } from './admin/add-admin/add-admin.component';
 
+import { AddAdminComponent } from './admin/add-admin/add-admin.component';
+import { FormulaireStationComponent } from './station/formulaire-station/formulaire-station.component';
 import { AuthGuardService } from './service/auth-guard.service';
 import { LogoutComponent } from './logout/logout.component';
 import { QuiSommesNousComponent } from './infos/qui-sommes-nous/qui-sommes-nous.component';
@@ -17,8 +18,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 
 
-const routes: Routes = [
 
+const routes: Routes = [
+  { path: 'stations', component: ListStationComponent },
+  { path: 'powerBank', component: ListPowerBankComponent },
+  { path: 'subscription', component: ListSubscriptionComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardService] },
@@ -30,10 +34,12 @@ const routes: Routes = [
   { path: 'subscription', component: ListSubscriptionComponent },
   { path: 'station/:idStation', component: StationDetailsComponent },
   { path: 'qui', component: QuiSommesNousComponent },
+
   {path: 'admin/:username', component: AdminComponent, canActivate: [AuthGuardService], children: [{
     path: 'createAdminAccount', component: AddAdminComponent, canActivate: [AuthGuardService]
-  }]}
-
+  }]},
+  { path: 'station', component: FormulaireStationComponent },
+  { path: 'station/update/:idStation', component: FormulaireStationComponent }
 ];
 
 @NgModule({

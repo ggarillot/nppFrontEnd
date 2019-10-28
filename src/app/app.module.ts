@@ -29,7 +29,7 @@ import { FormsModule, NgModel, FormGroup, ReactiveFormsModule } from '@angular/f
 import {
   MatButtonModule, MatCardModule, MatInputModule, MatDialogModule, MatTableModule,
   MatMenuModule, MatIconModule, MatCardContent, MatProgressSpinnerModule,
-  MatExpansionModule, MatDividerModule, MatListModule, MatProgressBarModule
+  MatExpansionModule, MatDividerModule, MatListModule, MatProgressBarModule, MatRadioModule
 } from '@angular/material';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { MyAccountComponent } from './my-account/my-account.component';
@@ -38,6 +38,9 @@ import { StationDetailsComponent } from './station/station-details/station-detai
 import { QuiSommesNousComponent } from './infos/qui-sommes-nous/qui-sommes-nous.component';
 import { AdminComponent } from './admin/admin.component';
 import { AddAdminComponent } from './admin/add-admin/add-admin.component';
+import { FormulaireStationComponent } from './station/formulaire-station/formulaire-station.component';
+
+
 
 @NgModule({
   declarations: [
@@ -57,7 +60,9 @@ import { AddAdminComponent } from './admin/add-admin/add-admin.component';
     StationDetailsComponent,
     QuiSommesNousComponent,
     AdminComponent,
-    AddAdminComponent
+    AddAdminComponent,
+    FormulaireStationComponent
+
   ],
   imports: [
     BrowserModule,
@@ -77,6 +82,7 @@ import { AddAdminComponent } from './admin/add-admin/add-admin.component';
     MatDividerModule,
     MatListModule,
     MatExpansionModule,
+    MatRadioModule,
     ReactiveFormsModule,
     MatProgressBarModule
   ],

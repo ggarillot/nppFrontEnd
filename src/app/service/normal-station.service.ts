@@ -22,11 +22,11 @@ export class NormalStationService {
   }
 
   public delete(id: number) {
-    return this.http.delete<NormalStation>(NormalStationService.uri + '/delete/' + { id });
+    return this.http.delete<NormalStation>(NormalStationService.uri + '/delete/' + id);
   }
 
   public getById(id: number): Observable<NormalStation> {
-    return this.http.get<NormalStation>(NormalStationService.uri + '/get/' + { id });
+    return this.http.get<NormalStation>(NormalStationService.uri + '/get/' + id);
   }
 
   public findAll(): Observable<NormalStation[]> {

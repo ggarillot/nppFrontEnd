@@ -1,10 +1,14 @@
-<h1 *ngIf="genericStation">Station {{genericStation.id}}</h1>
+<h1 *ngIf="genericStation" style="text-align: center;">Station {{genericStation.id}}</h1>
+
+
 
 <mat-card class="station-card">
     <mat-card-content>
         <table *ngIf="genericStation">
             <tr>
-                <th>position :</th>
+                <th>
+                    <h6>position </h6>
+                </th>
             </tr>
             <tr>
                 <th>Latitude : </th>
@@ -14,21 +18,37 @@
                 <th>Longitude :</th>
                 <th>{{genericStation.localisation.longitude}}</th>
             </tr>
+            <br>
             <tr>
-                <th>Nb d'emplacement libre</th>
-                <th>{{genericStation.nslots-genericStation.powerBankList.length}}</th>
+                <th>
+                    <h6>Nb d'emplacement libre</h6>
+                </th>
+                <th>
+                    <h6>{{genericStation.nslots-genericStation.powerBankList.length}}</h6>
+                </th>
             </tr>
+            <br>
             <tr>
-                <th>Nb de batteries disponibles :</th>
-                <th>{{genericStation.powerBankList.length}}</th>
+                <th>
+                    <h6>Nb de batteries disponibles :</h6>
+                </th>
+                <th>
+                    <h6>{{genericStation.powerBankList.length}}</h6>
+                </th>
             </tr>
+            <br>
             <tr>
-                <th>Status :</th>
-                <th>{{genericStation.status}}</th>
+                <th>
+                    <h6>Status :</h6>
+                </th>
+                <th>
+                    <h6>{{genericStation.status}}</h6>
+                </th>
             </tr>
         </table>
     </mat-card-content>
 </mat-card>
+
 
 
 
@@ -50,8 +70,19 @@
                     </thead>
                     <tr *ngFor="let item of genericStation.powerBankList">
                         <td>{{item.id}}</td>
-                        <td>{{item.status}}</td>
-                        <td>{{item.level}}</td>
+                        <!--<td><mat-icon>check_circle</mat-icon>{{item.status}}</td>-->
+                        <td *ngIf="item.status=='ok'; else statusFalse">
+                            <mat-icon style="color: forestgreen;">check_circle</mat-icon>
+                        </td>
+                        <ng-template #statusFalse>
+                            <td>
+                                <mat-icon style="color:crimson;">cancel</mat-icon>
+                            </td>
+                        </ng-template>
+                        <td>
+                            <mat-progress-bar mode="determinate" value="{{item.level*100}}"></mat-progress-bar>
+                            {{item.level*100}}%
+                        </td>
 
                     </tr>
                 </table>

@@ -23,11 +23,11 @@ export class AdministratorService {
   }
 
   public delete(id: number) {
-    return this.http.delete<Administrator>(AdministratorService.uri + '/delete/' + { id });
+    return this.http.delete<Administrator>(AdministratorService.uri + '/delete/' + id);
   }
 
   public getById(id: number): Observable<Administrator> {
-    return this.http.get<Administrator>(AdministratorService.uri + '/get/' + { id });
+    return this.http.get<Administrator>(AdministratorService.uri + '/get/' + id);
   }
 
   public findAll(): Observable<Administrator[]> {
