@@ -1,3 +1,6 @@
+import { FailComponent } from './fail/fail.component';
+import { WelcomeAdminComponent } from './admin/welcome-admin/welcome-admin.component';
+import { InformationComponent } from './my-account/information/information.component';
 
 import { AddAdminComponent } from './admin/add-admin/add-admin.component';
 import { FormulaireStationComponent } from './station/formulaire-station/formulaire-station.component';
@@ -26,7 +29,13 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardService] },
-  { path: 'monCompte/:username', component: MyAccountComponent, canActivate: [AuthGuardService] },
+  {
+    path: 'monCompte/:username', component: MyAccountComponent, canActivate: [AuthGuardService], children:
+      [
+        { path: 'information', component: InformationComponent, canActivate: [AuthGuardService] },
+        { path: 'fail', component: FailComponent}
+      ]
+  },
   { path: 'createAccount', component: CreateAccountComponent },
   { path: 'home', component: HomeComponent },
   // { path: 'station', component: ListStationComponent },
@@ -35,12 +44,16 @@ const routes: Routes = [
   { path: 'station/:idStation', component: StationDetailsComponent },
   { path: 'qui', component: QuiSommesNousComponent },
 
-  {path: 'admin/:username', component: AdminComponent, canActivate: [AuthGuardService], children: [
-    {path: 'createAdminAccount', component: AddAdminComponent, canActivate: [AuthGuardService]},
-    { path: 'station', component: FormulaireStationComponent, canActivate: [AuthGuardService]}
-  ]},
+  { path: 'admin/:username', component: AdminComponent, canActivate: [AuthGuardService], children: [
+      { path: 'createAdminAccount', component: AddAdminComponent, canActivate: [AuthGuardService] },
+      { path: 'station', component: FormulaireStationComponent, canActivate: [AuthGuardService] },
+      { path: 'welcome', component: WelcomeAdminComponent, canActivate: [AuthGuardService] },
+      { path: 'fail', component: FailComponent}
+    ]
+  },
   { path: 'station', component: FormulaireStationComponent, canActivate: [AuthGuardService] },
-  { path: 'station/update/:idStation', component: FormulaireStationComponent }
+  { path: 'station/update/:idStation', component: FormulaireStationComponent },
+  { path: 'fail', component: FailComponent}
 ];
 
 @NgModule({

@@ -83,6 +83,7 @@ export class StationDetailsComponent implements OnInit {
         this.rentService.endOfRental(rentalReq, this.genericStation.id).subscribe(()=>{
           this.loadStation(this.genericStation.id);
           this.checkIfHasRent();
+          this.hasRental = false;
         });
       });
     });
