@@ -33,7 +33,7 @@ import { FormsModule, NgModel, FormGroup, ReactiveFormsModule } from '@angular/f
 import {
   MatButtonModule, MatCardModule, MatInputModule, MatDialogModule, MatTableModule,
   MatMenuModule, MatIconModule, MatCardContent, MatProgressSpinnerModule,
-  MatExpansionModule, MatDividerModule, MatListModule, MatProgressBarModule, MatRadioModule
+  MatExpansionModule, MatDividerModule, MatListModule, MatProgressBarModule, MatRadioModule, MatSidenav, MatSidenavModule
 } from '@angular/material';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { MyAccountComponent } from './my-account/my-account.component';
@@ -89,7 +89,8 @@ import { FormulaireStationComponent } from './station/formulaire-station/formula
     MatExpansionModule,
     MatRadioModule,
     ReactiveFormsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSidenavModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: BasicAuthHttpInterceptorService, multi: true},
      // tslint:disable-next-line:max-line-length

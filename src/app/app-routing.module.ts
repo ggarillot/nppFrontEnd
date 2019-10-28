@@ -29,16 +29,17 @@ const routes: Routes = [
   { path: 'monCompte/:username', component: MyAccountComponent, canActivate: [AuthGuardService] },
   { path: 'createAccount', component: CreateAccountComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'station', component: ListStationComponent },
+  // { path: 'station', component: ListStationComponent },
   // { path: 'powerBank', component: ListPowerBankComponent },
   { path: 'subscription', component: ListSubscriptionComponent },
   { path: 'station/:idStation', component: StationDetailsComponent },
   { path: 'qui', component: QuiSommesNousComponent },
 
-  {path: 'admin/:username', component: AdminComponent, canActivate: [AuthGuardService], children: [{
-    path: 'createAdminAccount', component: AddAdminComponent, canActivate: [AuthGuardService]
-  }]},
-  { path: 'station', component: FormulaireStationComponent },
+  {path: 'admin/:username', component: AdminComponent, canActivate: [AuthGuardService], children: [
+    {path: 'createAdminAccount', component: AddAdminComponent, canActivate: [AuthGuardService]},
+    { path: 'station', component: FormulaireStationComponent, canActivate: [AuthGuardService]}
+  ]},
+  { path: 'station', component: FormulaireStationComponent, canActivate: [AuthGuardService] },
   { path: 'station/update/:idStation', component: FormulaireStationComponent }
 ];
 

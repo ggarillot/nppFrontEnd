@@ -63,9 +63,8 @@
             </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-list>
-            <mat-list-item *ngFor="let item of user.rental; last as last"></mat-list-item>
-            <h4 mat-line>{{item}}</h4>
-            <!-- <mat-divider [insert]="true" *ngIf="!last"></mat-divider> -->
+            <mat-list-item><app-list-subscription></app-list-subscription></mat-list-item>
+          
         </mat-list>
     </mat-expansion-panel>
 </body>
