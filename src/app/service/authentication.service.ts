@@ -1,31 +1,27 @@
+import { User } from './../model/User';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { GenericUserService } from './generic-user.service';
 import { GenericUser } from './../model/GenericUser';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
   user: GenericUser;
+  // public isAdmin: boolean;
 
-  constructor(private userService: GenericUserService) { }
+  constructor(private userService: GenericUserService, private httpClient: HttpClient) { }
 
   authenticate(username: string, password: string) {
-    // console.log(this.userService.findByUsername(username));
-    // this.userService.findByUsername(username).subscribe(response => {
-    //   this.user.username = response.username;
-    //   this.user.password = response.password;
-    //   console.log(response);
-    // });
-
-
-    if (username === 'admin' && password === 'password') {
-    // if (username === this.user.username && password === this.user.password) {
-      sessionStorage.setItem('username', username);
-      return true;
-    } else {
-      return false;
-    }
+    return this.httpClient.post<any>('http://localhost:8080/npp/authenticate', { username, password })
+      .pipe(map(userData => {
+        sessionStorage.setItem('username', username);
+        const tokenStr = 'Bearer ' + userData.token;
+        sessionStorage.setItem('token', tokenStr);
+        return userData;
+      }));
 
 
   }
@@ -35,7 +31,30 @@ export class AuthenticationService {
     return !(user === null);
   }
 
+  isAdmin() {
+    const role = sessionStorage.getItem('role');
+    if (role !== null) {
+      if (role === 'ADMIN') {
+        // console.log(role);
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  getUser() {
+    return sessionStorage.getItem('username');
+  }
+
+  getRole() {
+    return sessionStorage.getItem('role');
+  }
+
   logOut() {
     sessionStorage.removeItem('username');
+    sessionStorage.removeItem('role');
   }
 }

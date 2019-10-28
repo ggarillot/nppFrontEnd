@@ -1,3 +1,5 @@
+
+import { AddAdminComponent } from './admin/add-admin/add-admin.component';
 import { FormulaireStationComponent } from './station/formulaire-station/formulaire-station.component';
 import { AuthGuardService } from './service/auth-guard.service';
 import { LogoutComponent } from './logout/logout.component';
@@ -13,6 +15,8 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AdminComponent } from './admin/admin.component';
+
 
 
 const routes: Routes = [
@@ -22,14 +26,18 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuardService] },
-  { path: 'monCompte', component: MyAccountComponent, canActivate: [AuthGuardService] },
+  { path: 'monCompte/:username', component: MyAccountComponent, canActivate: [AuthGuardService] },
   { path: 'createAccount', component: CreateAccountComponent },
   { path: 'home', component: HomeComponent },
   { path: 'station', component: ListStationComponent },
-  { path: 'powerBank', component: ListPowerBankComponent },
+  // { path: 'powerBank', component: ListPowerBankComponent },
   { path: 'subscription', component: ListSubscriptionComponent },
   { path: 'station/:idStation', component: StationDetailsComponent },
   { path: 'qui', component: QuiSommesNousComponent },
+
+  {path: 'admin/:username', component: AdminComponent, canActivate: [AuthGuardService], children: [{
+    path: 'createAdminAccount', component: AddAdminComponent, canActivate: [AuthGuardService]
+  }]},
   { path: 'station', component: FormulaireStationComponent },
   { path: 'station/update/:idStation', component: FormulaireStationComponent }
 ];
