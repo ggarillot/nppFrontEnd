@@ -19,6 +19,7 @@ export class CreateAccountComponent implements OnInit {
     this.form = new FormGroup({
       surname: new FormControl(null, Validators.required),
       name: new FormControl(null, Validators.required),
+      username: new FormControl(null, Validators.required),
       email: new FormControl(null, Validators.required),
       password: new FormControl(null, Validators.required),
     });

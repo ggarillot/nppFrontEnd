@@ -31,10 +31,10 @@ import {
 } from '@angular/material';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { MyAccountComponent } from './my-account/my-account.component';
+import { LogoutComponent } from './logout/logout.component';
 import { StationDetailsComponent } from './station/station-details/station-details.component';
 import { QuiSommesNousComponent } from './infos/qui-sommes-nous/qui-sommes-nous.component';
 import { FormulaireStationComponent } from './station/formulaire-station/formulaire-station.component';
-
 
 @NgModule({
   declarations: [
@@ -50,6 +50,7 @@ import { FormulaireStationComponent } from './station/formulaire-station/formula
     LoginComponent,
     CreateAccountComponent,
     MyAccountComponent,
+    LogoutComponent,
     StationDetailsComponent,
     QuiSommesNousComponent,
     FormulaireStationComponent
