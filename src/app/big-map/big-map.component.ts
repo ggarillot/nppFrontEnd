@@ -3,12 +3,10 @@ import { StationMarkerComponent } from './../station-marker/station-marker.compo
 import { GenericStation } from './../model/GenericStation';
 import { GenericStationService } from './../service/generic-station.service';
 import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
-import { MapComponent, ViewComponent, SourceVectorComponent } from 'ngx-openlayers';
-import { Feature, MapBrowserEvent, coordinate } from 'openlayers';
+import { MapComponent, ViewComponent } from 'ngx-openlayers';
+import { Feature, MapBrowserEvent } from 'openlayers';
 import { toLonLat, fromLonLat } from 'ol/proj';
 import { GeoJsonRoutingService } from '../service/geo-json-routing.service';
-import GeoJSON from 'ol/format/GeoJSON';
-import LineString from 'ol/geom/LineString';
 import { Localisation } from '../model/Localisation';
 import { Geometry } from 'geojson';
 
@@ -32,18 +30,19 @@ export class BigMapComponent implements AfterViewInit, OnInit {
 
     private routeGeom;
 
-    private isRouteOk = false;
+    private isRouteOk: boolean;
 
     private myPosition: Localisation;
 
     public stationMap: Map<number, GenericStation>;
 
     constructor(private stationService: GenericStationService, private geoJsonService: GeoJsonRoutingService) {
-        this.stationMap = new Map<number, GenericStation>();
         this.myPosition = new Localisation();
+        this.stationMap = new Map<number, GenericStation>();
     }
 
     public ngOnInit() {
+        this.isRouteOk = false;
     }
 
     public ngAfterViewInit() {
@@ -53,14 +52,22 @@ export class BigMapComponent implements AfterViewInit, OnInit {
             this.myPosition.longitude = pos.lng;
             this.myPosition.latitude = pos.lat;
         });
+        this.loadStations();
+    }
+
+    loadStations(): void {
+        console.log('loadStations()');
 
         this.stationService.findAll().subscribe(
             (list: GenericStation[]) => {
+                console.log('tototo : ' + list.length);
 
                 for (const station of list) {
+                    console.log('station : ' + station.id);
                     this.stationMap.set(station.id, station);
+                    console.log(this.stationMap.get(station.id));
                 }
-                console.log(this.stationMap.entries.length + ' stations loaded');
+                console.log(this.stationMap.size + ' stations loaded');
             }
         );
     }
@@ -108,10 +115,7 @@ export class BigMapComponent implements AfterViewInit, OnInit {
 
                 this.setMarkerStation(station);
 
-                const coordToMove = Localisation.betweenTwoPoints(coord, this.myPosition);
-                this.smoothMoveTo(coordToMove);
-                this.retrieveRoute(this.myPosition, coord);
-
+                this.smoothMoveTo(station.localisation, 15);
             }
         } else {
             this.setMarkerStation(null);
@@ -136,19 +140,36 @@ export class BigMapComponent implements AfterViewInit, OnInit {
 
                 console.log(this.routeGeom);
                 this.isRouteOk = true;
+                const coordToMove = Localisation.betweenTwoPoints(begin, end);
+                const zoom = this.adjustZoomToRoute(begin, end);
+                this.smoothMoveTo(coordToMove, zoom);
             }
         );
     }
 
-    smoothMoveTo(coord: Localisation): void {
+    /**
+     * Zoom not calibrated at all
+     * @param begin : begin of the route
+     * @param end : end of the route
+     */
+    adjustZoomToRoute(begin: Localisation, end: Localisation): number {
+        const beginC = fromLonLat(Localisation.toArray(begin));
+        const endC = fromLonLat(Localisation.toArray(end));
+        const val = Math.sqrt((endC[0] - beginC[0]) * (endC[0] - beginC[0]) + (endC[1] - beginC[1]) * (endC[1] - beginC[1]));
+
+        const zoom = 20.8 - (0.0018 * val);
+
+        return zoom;
+    }
+
+    smoothMoveTo(coord: Localisation, zoomVal: number): void {
         console.log('smoothMoveTo(' + coord + ')');
 
         const transCoord = fromLonLat(Localisation.toArray(coord));
         this.view.instance.animate({
-            zoom: 15,
+            zoom: zoomVal,
             center: [transCoord[0], transCoord[1]],
             duration: 1000
         });
     }
-
 }

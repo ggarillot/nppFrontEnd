@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { GeoJSON } from 'ol/format';
 import { FeatureCollection } from 'geojson';
 import { Localisation } from '../model/Localisation';
 

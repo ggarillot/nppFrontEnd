@@ -1,6 +1,6 @@
 <aol-map #map (onClick)="handleClick($event)">
     <aol-interaction-default></aol-interaction-default>
-    <app-station-marker #marker></app-station-marker>
+    <app-station-marker #marker (talk)="retrieveRoute(myPosition,$event)"></app-station-marker>
     <aol-view #view [zoom]="12" [minZoom]="12" [maxZoom]="17">
         <aol-coordinate [x]="myPosition.longitude" [y]="myPosition.latitude" [srid]="'EPSG:4326'"></aol-coordinate>
     </aol-view>
