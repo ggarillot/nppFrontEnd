@@ -1,10 +1,11 @@
+import { GenericUserService } from './../service/generic-user.service';
 import { AuthenticationService } from './../service/authentication.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Administrator } from './../model/Administrator';
 import { StandardUser } from './../model/StandardUser';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {MatDialog} from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { invalid } from '@angular/compiler/src/render3/view/util';
 
 @Component({
@@ -17,32 +18,35 @@ export class LoginComponent implements OnInit {
   admin: Administrator;
   form: FormGroup;
   invalidLogin = false;
+  hide = true;
 
-  constructor(private router: Router, private loginservice: AuthenticationService) { }
+  constructor(private router: Router, private loginservice: AuthenticationService, private service: GenericUserService) { }
 
   ngOnInit() {
     this.form = new FormGroup({
-      username: new FormControl(),
-      password: new FormControl()
+      username: new FormControl(null, Validators.required),
+      password: new FormControl(null, Validators.required)
     });
   }
 
   login(): void {
-    // if (this.sUser.email === 'admin' && this.sUser.password === 'admin') {
-    //   if (this.email === 'admin' && this.password === 'admin') {
-    //   this.router.navigate(['home']);
-    //   alert('Vous êtes connecté');
-    // } else {
-    //   alert('Invalid');
-    // }
+    (this.loginservice.authenticate(this.form.value.username, this.form.value.password).subscribe(
+      data => {
 
-    if (this.loginservice.authenticate(this.form.value.username, this.form.value.password)) {
-      this.router.navigate(['home']);
-      this.invalidLogin = false;
-    } else {
-      this.invalidLogin = true;
-    }
+        this.service.findByUsername(this.form.value.username).subscribe(response => {
+          this.loginservice.user = response;
+          sessionStorage.setItem('role', response.role);
+          // console.log(sessionStorage.setItem('role', response.role));
+          this.router.navigate(['/home']);
+          this.invalidLogin = false;
+        });
 
+      }, error => {
+        this.invalidLogin = true;
+      }
+    ));
   }
 
 }
+
+

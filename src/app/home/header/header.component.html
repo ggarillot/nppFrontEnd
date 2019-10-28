@@ -2,15 +2,23 @@
     <mat-toolbar class="" color="primary">
         <mat-toolbar-row>
 
-            <a class="active" href="">Accueil</a>
+            <div class="navbar-brand">
+                <a class="navbar-item">
+                    <img src="assets/img/recycling.png">
+                </a>
+            </div>
 
-            <a routerLink="/qui">Qui sommes-nous ?</a>
+            <a class="active" href="home">Accueil</a>
+
+             <a routerLink="/qui">Qui sommes-nous ?</a>
 
             <a routerLink="/stations">Les stations</a>
 
             <span class="spacer"></span>
             <a *ngIf="!loginService.isUserLoggedIn()" href="login">Login</a>
-            <a *ngIf="loginService.isUserLoggedIn()" href="monCompte">Mon compte</a>
+            <a *ngIf="loginService.isUserLoggedIn()" routerLink="/monCompte/{{loginService.getUser()}}">Mon compte</a>
+            <a *ngIf="loginService.isUserLoggedIn() && loginService.isAdmin()"
+                routerLink="/admin/{{loginService.getUser()}}">Admin</a>
             <a *ngIf="loginService.isUserLoggedIn()" href="logout">Logout</a>
 
         </mat-toolbar-row>
