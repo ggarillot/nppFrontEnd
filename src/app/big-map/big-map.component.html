@@ -1,59 +1,62 @@
-<aol-map #map (onClick)="handleClick($event)">
-    <aol-interaction-default></aol-interaction-default>
-    <app-station-marker #marker (talk)="retrieveRoute(myPosition,$event)"></app-station-marker>
-    <aol-view #view [zoom]="12" [minZoom]="12" [maxZoom]="17">
-        <aol-coordinate [x]="myPosition.longitude" [y]="myPosition.latitude" [srid]="'EPSG:4326'"></aol-coordinate>
-    </aol-view>
-    <aol-layer-tile>
-        <aol-source-xyz [url]="'https://api.maptiler.com/maps/voyager/256/{z}/{x}/{y}.png?key=JqtuhpUnmw7Cqb9uYBPg'">
-        </aol-source-xyz>
-    </aol-layer-tile>
-    <aol-layer-vector>
-        <aol-source-vector>
-            <aol-feature [id]="'currentLocation'">
-                <aol-geometry-point>
-                    <aol-coordinate [x]="myPosition.longitude" [y]="myPosition.latitude" srid="EPSG:4326">
-                    </aol-coordinate>
-                </aol-geometry-point>
-                <aol-style>
-                    <aol-style-circle [radius]="10">
-                        <aol-style-stroke [color]="'black'" [width]="1"></aol-style-stroke>
-                        <aol-style-fill [color]="'red'"></aol-style-fill>
-                    </aol-style-circle>
-                </aol-style>
-            </aol-feature>
-            <aol-feature *ngFor="let station of stationMap | keyvalue" [id]="station.key">
-                <aol-geometry-point>
-                    <aol-coordinate [x]="station.value.localisation.longitude" [y]="station.value.localisation.latitude"
-                        srid="EPSG:4326">
-                    </aol-coordinate>
-                </aol-geometry-point>
-                <aol-style>
-                    <aol-style-circle [radius]="10">
-                        <aol-style-stroke if [color]="'black'" [width]="1"></aol-style-stroke>
-                        <ng-container *ngIf="station.value.status==='open'; else elseTemplate">
-                            <aol-style-fill [color]="'green'"></aol-style-fill>
-                        </ng-container>
-                        <ng-template #elseTemplate>
-                            <aol-style-fill [color]="'black'"></aol-style-fill>
-                        </ng-template>
-                    </aol-style-circle>
-                </aol-style>
-            </aol-feature>
-        </aol-source-vector>
-    </aol-layer-vector>
-    <aol-layer-vector *ngIf="isRouteOk" [visible]="'true'">
-        <aol-source-vector>
-            <aol-feature>
-                <aol-geometry-linestring>
-                    <aol-collection-coordinates [coordinates]="routeGeom" [srid]="'EPSG:4326'">
-                    </aol-collection-coordinates>
-                </aol-geometry-linestring>
-                <aol-style>
-                    <aol-style-stroke [color]="'blue'" [width]="3">
-                    </aol-style-stroke>
-                </aol-style>
-            </aol-feature>
-        </aol-source-vector>
-    </aol-layer-vector>
-</aol-map>
+<div style="margin-top:-200px; margin-left: -100px;">
+    <aol-map #map (onClick)="handleClick($event)" [width]="'100vw'" [height]="'100vh'">
+        <aol-interaction-default></aol-interaction-default>
+        <app-station-marker #marker (talk)="retrieveRoute(myPosition,$event)"></app-station-marker>
+        <aol-view #view [zoom]="12" [minZoom]="12" [maxZoom]="17">
+            <aol-coordinate [x]="myPosition.longitude" [y]="myPosition.latitude" [srid]="'EPSG:4326'"></aol-coordinate>
+        </aol-view>
+        <aol-layer-tile>
+            <aol-source-xyz
+                [url]="'https://api.maptiler.com/maps/voyager/256/{z}/{x}/{y}.png?key=JqtuhpUnmw7Cqb9uYBPg'">
+            </aol-source-xyz>
+        </aol-layer-tile>
+        <aol-layer-vector>
+            <aol-source-vector>
+                <aol-feature [id]="'currentLocation'">
+                    <aol-geometry-point>
+                        <aol-coordinate [x]="myPosition.longitude" [y]="myPosition.latitude" srid="EPSG:4326">
+                        </aol-coordinate>
+                    </aol-geometry-point>
+                    <aol-style>
+                        <aol-style-circle [radius]="10">
+                            <aol-style-stroke [color]="'black'" [width]="1"></aol-style-stroke>
+                            <aol-style-fill [color]="'red'"></aol-style-fill>
+                        </aol-style-circle>
+                    </aol-style>
+                </aol-feature>
+                <aol-feature *ngFor="let station of stationMap | keyvalue" [id]="station.key">
+                    <aol-geometry-point>
+                        <aol-coordinate [x]="station.value.localisation.longitude"
+                            [y]="station.value.localisation.latitude" srid="EPSG:4326">
+                        </aol-coordinate>
+                    </aol-geometry-point>
+                    <aol-style>
+                        <aol-style-circle [radius]="10">
+                            <aol-style-stroke if [color]="'black'" [width]="1"></aol-style-stroke>
+                            <ng-container *ngIf="station.value.status==='open'; else elseTemplate">
+                                <aol-style-fill [color]="'green'"></aol-style-fill>
+                            </ng-container>
+                            <ng-template #elseTemplate>
+                                <aol-style-fill [color]="'black'"></aol-style-fill>
+                            </ng-template>
+                        </aol-style-circle>
+                    </aol-style>
+                </aol-feature>
+            </aol-source-vector>
+        </aol-layer-vector>
+        <aol-layer-vector *ngIf="isRouteOk" [visible]="'true'">
+            <aol-source-vector>
+                <aol-feature>
+                    <aol-geometry-linestring>
+                        <aol-collection-coordinates [coordinates]="routeGeom" [srid]="'EPSG:4326'">
+                        </aol-collection-coordinates>
+                    </aol-geometry-linestring>
+                    <aol-style>
+                        <aol-style-stroke [color]="'blue'" [width]="3">
+                        </aol-style-stroke>
+                    </aol-style>
+                </aol-feature>
+            </aol-source-vector>
+        </aol-layer-vector>
+    </aol-map>
+</div>

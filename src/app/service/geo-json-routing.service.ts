@@ -14,19 +14,23 @@ export class GeoJsonRoutingService {
 
   public getRouting(begin: Localisation, end: Localisation): Observable<FeatureCollection> {
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Accept: 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8',
-        Authorization: GeoJsonRoutingService.apiKey
-      })
-    };
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'application/json',
+    //     Accept: 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8',
+    //     Authorization: GeoJsonRoutingService.apiKey
+    //   })
+    // };
 
-    const beginJson = '[' + begin.longitude + ',' + begin.latitude + ']';
-    const endJson = '[' + end.longitude + ',' + end.latitude + ']';
-    const path = '{"coordinates":[' + beginJson + ',' + endJson + ']}';
-    console.log(path);
+    // const beginJson = '[' + begin.longitude + ',' + begin.latitude + ']';
+    // const endJson = '[' + end.longitude + ',' + end.latitude + ']';
+    // const path = '{"coordinates":[' + beginJson + ',' + endJson + ']}';
+    // console.log(path);
 
-    return this.http.post<FeatureCollection>('https://api.openrouteservice.org/v2/directions/foot-walking/geojson', path, httpOptions);
+    return this.http.get<FeatureCollection>('https://api.openrouteservice.org/v2/directions/foot-walking?api_key=' +
+      GeoJsonRoutingService.apiKey +
+      '&start=' + begin.longitude + ',' + begin.latitude +
+      '&end=' + end.longitude + ',' + end.latitude);
+    // return this.http.post<FeatureCollection>('https://api.openrouteservice.org/v2/directions/foot-walking/geojson', path, httpOptions);
   }
 }

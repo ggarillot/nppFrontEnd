@@ -1,33 +1,19 @@
-<router-outlet></router-outlet>
-<mat-expansion-panel>
-    <mat-expansion-panel-header>
-        <mat-panel-title>
-            Créer un admin
-        </mat-panel-title>
-    </mat-expansion-panel-header>
-    <mat-list>
-        <app-add-admin></app-add-admin>
-    </mat-list>
-</mat-expansion-panel>
+<div>
+    <mat-drawer-container class="container" autosize>
+        <mat-drawer opened class="sidenav" mode="side">
+            <a mat-list-item router routerLink="welcome">Welcome page</a>
+            <mat-divider></mat-divider>
+            <a mat-list-item router routerLink="createAdminAccount">Créer un compte administrateur</a>
+            <mat-divider></mat-divider>
+            <a mat-list-item router routerLink="station">Ajouter une station</a>
+            <mat-divider></mat-divider>
+            <a mat-list-item router routerLink="fail">Ajouter une batterie</a>
+            <mat-divider></mat-divider>
+        </mat-drawer>
 
-<mat-expansion-panel>
-    <mat-expansion-panel-header>
-        <mat-panel-title>
-            Ajouter une station
-        </mat-panel-title>
-    </mat-expansion-panel-header>
-    <mat-list>
-        
-    </mat-list>
-</mat-expansion-panel>
+        <div class="sidenav-content">
+            <router-outlet></router-outlet>
+        </div>
 
-<mat-expansion-panel>
-    <mat-expansion-panel-header>
-        <mat-panel-title>
-            Ajouter une batterie
-        </mat-panel-title>
-    </mat-expansion-panel-header>
-    <mat-list>
-        
-    </mat-list>
-</mat-expansion-panel>
+    </mat-drawer-container>
+</div>

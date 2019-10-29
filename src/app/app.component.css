@@ -1,5 +1,27 @@
+
+.main {
+   margin-bottom: 100px;
+}
+
 body {
-    padding: 100px;
+    padding:100px;  
+
     align-content: center;
     text-align: center;
+    flex-grow:1;
+    
 }
+
+
+ .push {
+    height: 100px;
+}
+
+.page {
+    min-height:100vh; /* 1 */
+	display:flex; /* 2 */
+	flex-direction:column; /* 3 */
+}
+
+
+

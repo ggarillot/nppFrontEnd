@@ -33,7 +33,7 @@ import { FormsModule, NgModel, FormGroup, ReactiveFormsModule } from '@angular/f
 import {
   MatButtonModule, MatCardModule, MatInputModule, MatDialogModule, MatTableModule,
   MatMenuModule, MatIconModule, MatCardContent, MatProgressSpinnerModule,
-  MatExpansionModule, MatDividerModule, MatListModule, MatProgressBarModule, MatRadioModule
+  MatExpansionModule, MatDividerModule, MatListModule, MatProgressBarModule, MatRadioModule, MatSidenav, MatSidenavModule
 } from '@angular/material';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { MyAccountComponent } from './my-account/my-account.component';
@@ -44,6 +44,10 @@ import { AdminComponent } from './admin/admin.component';
 import { AddAdminComponent } from './admin/add-admin/add-admin.component';
 import { FormulaireStationComponent } from './station/formulaire-station/formulaire-station.component';
 import { FormulairePowerBankComponent } from './powerBank/formulaire-power-bank/formulaire-power-bank.component';
+import { InformationComponent } from './my-account/information/information.component';
+import { WelcomeAdminComponent } from './admin/welcome-admin/welcome-admin.component';
+import { FailComponent } from './fail/fail.component';
+
 
 
 
@@ -65,15 +69,14 @@ import { FormulairePowerBankComponent } from './powerBank/formulaire-power-bank/
     LogoutComponent,
     StationDetailsComponent,
     QuiSommesNousComponent,
-<<<<<<< HEAD
-    FormulaireStationComponent,
-    FormulairePowerBankComponent
-=======
+    FormulairePowerBankComponent,
     AdminComponent,
     AddAdminComponent,
-    FormulaireStationComponent
+    FormulaireStationComponent,
+    InformationComponent,
+    WelcomeAdminComponent,
+    FailComponent
 
->>>>>>> 70d0c4df7733962310b5b475cd598563b2faf25c
   ],
   imports: [
     BrowserModule,
@@ -95,7 +98,8 @@ import { FormulairePowerBankComponent } from './powerBank/formulaire-power-bank/
     MatExpansionModule,
     MatRadioModule,
     ReactiveFormsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSidenavModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: BasicAuthHttpInterceptorService, multi: true},
      // tslint:disable-next-line:max-line-length

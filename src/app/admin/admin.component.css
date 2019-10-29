@@ -1,0 +1,23 @@
+.container {
+    margin-left: -100px;
+    margin-top: -60px;
+    
+  }
+  
+  .sidenav-content {
+  
+    align-items: center;
+    justify-content: center;
+    
+  }
+  
+  .sidenav {
+      padding: 40px;
+  }
+
+  a {
+      text-decoration: none;
+      padding: 10px;
+      color: black;
+  }
+ 

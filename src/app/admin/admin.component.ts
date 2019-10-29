@@ -11,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
   user: GenericUser;
+  showFiller = false;
 
   constructor(private router: Router, private service: GenericUserService, private auth: AuthenticationService
             , private activatedRoute: ActivatedRoute) { }
