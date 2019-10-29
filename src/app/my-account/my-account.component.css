@@ -3,3 +3,7 @@ body {
     align-content: center;
     text-align: center;
 }
+
+mat-list {
+    padding: 100px;
+}

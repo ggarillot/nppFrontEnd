@@ -38,4 +38,8 @@ export class GenericStationService {
   public getPowerBankListOfThisStation(id: number): Observable<PowerBank[]> {
     return this.http.get<PowerBank[]>(GenericStationService.uri + '/get/' + id + '/powerBank');
   }
+
+  public addPowerBank(id: number): Observable<PowerBank[]> {
+    return this.http.put<PowerBank[]>(GenericStationService.uri + '/' + id + '/addPowerBank', null);
+  }
 }
